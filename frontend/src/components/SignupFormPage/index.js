@@ -1,5 +1,3 @@
-// frontend/src/components/SignupFormPage/index.js
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -14,6 +12,7 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [invalidFields, setInvalidFields] = useState({ email: false, username: false, password: false, confirmPassword: false });
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -23,19 +22,31 @@ function SignupFormPage() {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password }))
         .catch(async (res) => {
-        let data;
-        try {
-          // .clone() essentially allows you to read the response body twice
-          data = await res.clone().json();
-        } catch {
-          data = await res.text(); // Will hit this case if the server is down
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
-      });
+          let data;
+          try {
+            data = await res.clone().json();
+          } catch {
+            data = await res.text();
+          }
+          if (data?.errors) {
+            setErrors(data.errors);
+
+            // Assuming error messages contain these substrings
+            if (data.errors.some(err => err.includes("email"))) {
+              setInvalidFields(prev => ({ ...prev, email: true }));
+            }
+            if (data.errors.some(err => err.includes("username"))) {
+              setInvalidFields(prev => ({ ...prev, username: true }));
+            }
+            if (data.errors.some(err => err.includes("password"))) {
+              setInvalidFields(prev => ({ ...prev, password: true }));
+            }
+          }
+        });
+    } else {
+      setErrors(['Confirm Password field must be the same as the Password field']);
+      setInvalidFields(prev => ({ ...prev, confirmPassword: true }));
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
   return (
@@ -48,7 +59,7 @@ function SignupFormPage() {
         <label>
           Email
           <input
-            className="signup-input"
+            className={`signup-input ${invalidFields.email ? "input-error" : ""}`}
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -58,7 +69,7 @@ function SignupFormPage() {
         <label>
           Username
           <input
-            className="signup-input"
+            className={`signup-input ${invalidFields.username ? "input-error" : ""}`}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -68,7 +79,7 @@ function SignupFormPage() {
         <label>
           Password
           <input
-            className="signup-input"
+            className={`signup-input ${invalidFields.password ? "input-error" : ""}`}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -78,7 +89,7 @@ function SignupFormPage() {
         <label>
           Confirm Password
           <input
-            className="signup-input"
+            className={`signup-input ${invalidFields.confirmPassword ? "input-error" : ""}`}
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -89,7 +100,6 @@ function SignupFormPage() {
       </form>
     </div>
   );
-  
 }
 
 export default SignupFormPage;

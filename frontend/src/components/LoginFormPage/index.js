@@ -10,8 +10,13 @@ function LoginFormPage() {
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [invalidFields, setInvalidFields] = useState({ credential: false, password: false });
   
     if (sessionUser) return <Redirect to="/" />;
+
+
+
+    
 
 
 
@@ -30,6 +35,15 @@ function LoginFormPage() {
             if (data?.errors) setErrors(data.errors);
             else if (data) setErrors([data]);
             else setErrors([res.statusText]);
+
+            if (errors.includes("some credential error")) {
+                setInvalidFields((prev) => ({ ...prev, credential: true }));
+              }
+              if (errors.includes("some password error")) {
+                setInvalidFields((prev) => ({ ...prev, password: true }));
+              }
+
+
           });
       };
 
@@ -44,7 +58,7 @@ function LoginFormPage() {
                     <label>
                         Username or Email
                         <input
-                            className="login-input"
+                            className={`login-input ${invalidFields.credential ? "input-error" : ""}`}
                             type="text"
                             value={credential}
                             onChange={(e) => setCredential(e.target.value)}
@@ -54,7 +68,7 @@ function LoginFormPage() {
                     <label>
                         Password
                         <input
-                            className="login-input"
+                            className={`login-input ${invalidFields.password ? "input-error" : ""}`}
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}

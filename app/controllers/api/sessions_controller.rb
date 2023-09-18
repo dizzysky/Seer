@@ -13,6 +13,7 @@ class Api::SessionsController < ApplicationController
 
   def create
     @user = User.find_by_credentials(params[:credential], params[:password])
+    puts "@user: #{@user.inspect}"
 
     if @user
       login!(@user)

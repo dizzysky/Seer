@@ -1,0 +1,26 @@
+{
+  "name": "seer",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dizzysky/Seer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "engines": {
+    "node": "16.20.0"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dizzysky/Seer/issues"
+  },
+  "homepage": "https://github.com/dizzysky/Seer#readme"
+}

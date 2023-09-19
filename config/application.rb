@@ -42,5 +42,6 @@ module Seer
     secure: Rails.env.production?
 
     config.api_only = true
+    config.railties_order = [:all, :main_app]
   end
 end

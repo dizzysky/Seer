@@ -13,6 +13,10 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [invalidFields, setInvalidFields] = useState({ email: false, username: false, password: false, confirmPassword: false });
+  const renderError = (fieldName) => {
+    const error = errors.find(err => err.toLowerCase().includes(fieldName));
+    return error ? <small className="field-error">{error}</small> : null;
+  };
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -53,9 +57,11 @@ function SignupFormPage() {
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
-        <ul className="error-message">
-          {errors.map(error => <li key={error}>{error}</li>)}
-        </ul>
+        {/* <ul className="error-message">
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul> */}
         <label>
           Email
           <input
@@ -65,6 +71,7 @@ function SignupFormPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          {renderError("email")}
         </label>
         <label>
           Username
@@ -75,6 +82,7 @@ function SignupFormPage() {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
+          {renderError("username")}
         </label>
         <label>
           Password
@@ -85,6 +93,7 @@ function SignupFormPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          {renderError("password")}
         </label>
         <label>
           Confirm Password
@@ -95,11 +104,17 @@ function SignupFormPage() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+          {errors.includes("Confirm Password field must be the same as the Password field")
+            ? null
+            : renderError("confirm password")}
         </label>
-        <button className="signup-button" type="submit">Sign Up</button>
+        <button className="signup-button" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );
+  
 }
 
 export default SignupFormPage;

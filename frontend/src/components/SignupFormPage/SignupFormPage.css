@@ -54,4 +54,10 @@ h1 {
 .input-error {
     border: 2px solid red;
 }
+
+.field-error {
+    color: red; 
+    font-size: small; 
+    margin-top: 4px;
+}
   

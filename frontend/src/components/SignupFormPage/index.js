@@ -54,8 +54,8 @@ function SignupFormPage() {
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
-        <label>
-          Email
+        <div className="field-container">
+          <label>Email</label>
           <input
             className={`signup-input ${invalidFields.email ? "input-error" : ""}`}
             type="text"
@@ -64,9 +64,9 @@ function SignupFormPage() {
             required
           />
           {renderError("email")}
-        </label>
-        <label>
-          Username
+        </div>
+        <div className="field-container">
+          <label>Username</label>
           <input
             className={`signup-input ${invalidFields.username ? "input-error" : ""}`}
             type="text"
@@ -75,9 +75,9 @@ function SignupFormPage() {
             required
           />
           {renderError("username")}
-        </label>
-        <label>
-          Password
+        </div>
+        <div className="field-container">
+          <label>Password</label>
           <input
             className={`signup-input ${invalidFields.password ? "input-error" : ""}`}
             type="password"
@@ -86,9 +86,9 @@ function SignupFormPage() {
             required
           />
           {renderError("password")}
-        </label>
-        <label>
-          Confirm Password
+        </div>
+        <div className="field-container">
+          <label>Confirm Password</label>
           <input
             className={`signup-input ${invalidFields.confirmPassword ? "input-error" : ""}`}
             type="password"
@@ -96,14 +96,15 @@ function SignupFormPage() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          {renderError("confirmPassword")}
-        </label>
+          {renderError("confirm password")}
+        </div>
         <button className="signup-button" type="submit">
           Sign Up
         </button>
       </form>
     </div>
   );
+  
 }
 
 

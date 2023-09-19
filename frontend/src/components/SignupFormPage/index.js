@@ -24,6 +24,11 @@ function SignupFormPage() {
     e.preventDefault();
     
       setErrors([]);
+      if (password !== confirmPassword) {
+        console.log("WRONG");
+        setErrors(['Confirm Password field must be the same as the Password field']);
+        setInvalidFields(prev => ({ ...prev, confirmPassword: true }));
+      }
       
       dispatch(sessionActions.signup({ email, username, password }))
         .catch(async (res) => {
@@ -48,10 +53,7 @@ function SignupFormPage() {
             }
           }
         });
-        if (password !== confirmPassword) {
-          setErrors(['Confirm Password field must be the same as the Password field']);
-          setInvalidFields(prev => ({ ...prev, confirmPassword: true }));
-        }
+       
   };
 
   return (

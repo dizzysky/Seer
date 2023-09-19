@@ -12,7 +12,10 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [invalidFields, setInvalidFields] = useState({ email: false, username: false, password: false, confirmPassword: false });
+  const [invalidFields, setInvalidFields] = useState({ 
+    email: false, username: false, password: false, confirmPassword: false 
+  });
+
   const renderError = (fieldName) => {
     const error = errors.find(err => err.toLowerCase().includes(fieldName));
     return error ? <small className="field-error">{error}</small> : null;
@@ -20,51 +23,37 @@ function SignupFormPage() {
 
   if (sessionUser) return <Redirect to="/" />;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-      setErrors([]);
-      if (password !== confirmPassword) {
-        console.log("WRONG");
-        setErrors(['Confirm Password field must be the same as the Password field']);
-        setInvalidFields(prev => ({ ...prev, confirmPassword: true }));
+    let newErrors = [];
+  
+    if (password !== confirmPassword) {
+      newErrors.push("Confirm Password field must be the same as the Password field");
+      setInvalidFields(prev => ({ ...prev, confirmPassword: true }));
+    }
+  
+    try {
+      await dispatch(sessionActions.signup({ email, username, password }));
+    } catch (res) {
+      let data;
+      try {
+        data = await res.clone().json();
+      } catch {
+        data = await res.text();
       }
-      
-      dispatch(sessionActions.signup({ email, username, password }))
-        .catch(async (res) => {
-          let data;
-          try {
-            data = await res.clone().json();
-          } catch {
-            data = await res.text();
-          }
-          if (data?.errors) {
-            setErrors(data.errors);
-
-            // Assuming error messages contain these substrings
-            if (data.errors.some(err => err.includes("email"))) {
-              setInvalidFields(prev => ({ ...prev, email: true }));
-            }
-            if (data.errors.some(err => err.includes("username"))) {
-              setInvalidFields(prev => ({ ...prev, username: true }));
-            }
-            if (data.errors.some(err => err.includes("password"))) {
-              setInvalidFields(prev => ({ ...prev, password: true }));
-            }
-          }
-        });
-       
+      if (data?.errors) {
+        newErrors = [...newErrors, ...data.errors];
+      }
+    }
+    
+    setErrors(newErrors);
   };
+  
 
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
-        {/* <ul className="error-message">
-          {errors.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul> */}
         <label>
           Email
           <input
@@ -107,9 +96,7 @@ function SignupFormPage() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          {errors.includes("Confirm Password field must be the same as the Password field")
-            ? null
-            : renderError("confirm password")}
+          {renderError("confirmPassword")}
         </label>
         <button className="signup-button" type="submit">
           Sign Up
@@ -117,7 +104,7 @@ function SignupFormPage() {
       </form>
     </div>
   );
-  
 }
+
 
 export default SignupFormPage;

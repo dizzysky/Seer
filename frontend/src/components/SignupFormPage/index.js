@@ -55,45 +55,45 @@ function SignupFormPage() {
       <form className="signup-form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
         <div className="field-container">
-          <label>Email</label>
           <input
             className={`signup-input ${invalidFields.email ? "input-error" : ""}`}
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="email"
             required
           />
           {renderError("email")}
         </div>
         <div className="field-container">
-          <label>Username</label>
           <input
             className={`signup-input ${invalidFields.username ? "input-error" : ""}`}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="username"
             required
           />
           {renderError("username")}
         </div>
         <div className="field-container">
-          <label>Password</label>
           <input
             className={`signup-input ${invalidFields.password ? "input-error" : ""}`}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="password"
             required
           />
           {renderError("password")}
         </div>
         <div className="field-container">
-          <label>Confirm Password</label>
           <input
             className={`signup-input ${invalidFields.confirmPassword ? "input-error" : ""}`}
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="confirm password"
             required
           />
           {renderError("confirm password")}

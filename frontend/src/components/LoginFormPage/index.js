@@ -47,26 +47,23 @@ function LoginFormPage() {
                     <ul className="error-message">
                         {errors.map(error => <li key={error}>{error}</li>)}
                     </ul>
-                    <label>
-                        Username or Email
                         <input
                             className={`login-input ${invalidFields.credential ? "input-error" : ""}`}
                             type="text"
                             value={credential}
                             onChange={(e) => setCredential(e.target.value)}
+                            placeholder="username or email"
                             required
                         />
-                    </label>
-                    <label>
-                        Password
                         <input
                             className={`login-input ${invalidFields.password ? "input-error" : ""}`}
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            placeholder="password"
                             required
                         />
-                    </label>
+                    
                     <button type="submit" className="login-button">Log In</button>
                 </form>
             </div>

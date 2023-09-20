@@ -22,6 +22,7 @@ h1 {
 }
 
 .login-input {
+    line-height: 1.75;
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -35,6 +36,8 @@ h1 {
 }
 
 .login-button {
+    font-size: 18px;
+    margin-top: 20px;
     padding: 10px 20px;
     width: 100%;
     background-color: #0063dc;
@@ -45,8 +48,19 @@ h1 {
     font-weight: bold;
 }
 
+.login-input::placeholder {
+    font-size: 14px;  /* Adjust as needed */
+  }
+  
+
 
 .input-error {
     border: 2px solid red;
 }
-  
+
+
+label, input {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}

@@ -15,10 +15,9 @@ function Navigation() {
 
   const handleDemoLogin = async () => {
     console.log("we in here");
-    // Make an API call to log in the demo user here, then dispatch the returned data
     const demoUserData = { credential: 'demo@user.io', password: 'password' };
     console.log(demoUserData);
-    dispatch(sessionActions.login(demoUserData)); // Replace with your login action
+    dispatch(sessionActions.login(demoUserData));
   };
 
   let sessionLinks;

@@ -32,7 +32,7 @@ function Navigation() {
   } else {
     sessionLinks = (
         <>
-          <button className="nav-link" onClick={handleDemoLogin}>Demo User</button>
+          <button className="nav-link" onClick={handleDemoLogin}>Demo Log In</button>
           <NavLink className="nav-link" to="/login">Log In</NavLink>
           <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
         </>

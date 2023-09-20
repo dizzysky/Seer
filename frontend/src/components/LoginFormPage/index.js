@@ -14,12 +14,6 @@ function LoginFormPage() {
   
     if (sessionUser) return <Redirect to="/" />;
 
-
-
-    
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -42,8 +36,6 @@ function LoginFormPage() {
               if (errors.includes("some password error")) {
                 setInvalidFields((prev) => ({ ...prev, password: true }));
               }
-
-
           });
       };
 
@@ -80,7 +72,6 @@ function LoginFormPage() {
             </div>
         </div>
     );
-
 }
 
 

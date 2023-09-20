@@ -12,6 +12,15 @@
 
 }
 
+/* NavLinks */
+.nav-link {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+
 /* Button Styles */
 button {
   border: none;
@@ -36,24 +45,13 @@ button {
   gap: 10px;
 }
 
-/* NavLinks */
-.nav-link {
-  text-decoration: none;
-  color: white;
-  padding: 10px;
-  margin: 0 10px;
-}
+
 
 /* Log In and Sign Up */
 .session-links .nav-link {
   font-weight: 300;
   font-size: 1.2em;
 }
-
-/* Active Link */
-/* .nav-link.active {
-  border-bottom: 2px solid #ecf0f1;
-} */
 
 /* Hover Effects */
 .nav-link:hover, .session-links a:hover {

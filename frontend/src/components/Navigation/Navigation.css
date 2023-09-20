@@ -48,13 +48,13 @@ button {
 
 
 /* Log In and Sign Up */
-.session-links .nav-link {
+.session-links .nav-link, button.nav-link {
   font-weight: 300;
   font-size: 1.2em;
 }
 
 /* Hover Effects */
-.nav-link:hover, .session-links a:hover {
+.nav-link:hover, .session-links a:hover, button.nav-link:hover {
   color: #ecf0f1;
 }
 
@@ -66,10 +66,24 @@ button {
 
 .nav-item {
   list-style-type: none;
-  /* ...other styles */
 }
 
 
 .nav-list.translucent {
   background-color: rgba(44, 62, 80, 0.5); /* Adjust the alpha value as you like */
+}
+
+
+/* Button Styles */
+button.nav-link {
+  border: none;
+  cursor: pointer;
+  background: none;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  margin: 0 10px;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 300;
+  font-size: 1.2em;
 }

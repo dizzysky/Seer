@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_214421) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_182030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "photos", force: :cascade do |t|
+    t.string "caption"
+    t.bigint "uploader_id"
+    t.bigint "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uploader_id"], name: "index_photos_on_uploader_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -28,4 +37,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_214421) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "photos", "users", column: "uploader_id"
 end

@@ -22,10 +22,13 @@ const SplashPage = () => {
 
   return (
     <div className="splash-container" style={{ backgroundImage: `url(${images[currentImageIndex]})` }}>
-      <h1>Find Your Inspiration</h1>
-      <p>Join the Seer community, home to tens of billions of photos and 2 million groups.</p>
+      <div className="splash-text">
+        <h1>Find Your Inspiration</h1>
+        <p>Join the Seer community, home to tens of billions of photos and 2 million groups.</p>
+      </div>
     </div>
   );
+  
 };
 
 export default SplashPage;

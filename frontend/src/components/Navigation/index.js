@@ -46,6 +46,11 @@ function Navigation() {
           Seer
         </NavLink>
       </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/explore" activeClassName="active">
+          Explore  {/* This is the new Explore link */}
+        </NavLink>
+      </li>
       <li className="nav-item session-links">
         {sessionLinks}
       </li>

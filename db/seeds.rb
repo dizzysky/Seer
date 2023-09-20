@@ -27,11 +27,36 @@ ApplicationRecord.transaction do
     # More users
     10.times do 
       User.create!({
-        username: Faker::Internet.unique.username(specifier: 3),
+        username: Faker::Internet.unique.username(specifier: 3..15),
         email: Faker::Internet.unique.email,
         password: 'password'
       }) 
     end
   
     puts "Done!"
+
+
+    puts "Creating example photos..." 
+
+    first_user = User.first
+
+
+    Photo.create([
+      {
+        caption: 'First example photo', 
+        uploader_id: first_user.id, 
+        album_id: nil, 
+        created_at: Time.now, 
+        updated_at: Time.now
+      },
+      {
+        caption: 'Second example photo', 
+        uploader_id: first_user.id, 
+        album_id: nil, 
+        created_at: Time.now, 
+        updated_at: Time.now
+      }
+    ])
+
+    puts "Created example photos!"
   end

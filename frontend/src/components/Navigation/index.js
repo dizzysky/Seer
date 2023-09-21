@@ -9,7 +9,7 @@ import logo from '../../assets/flickr.png';
 import * as sessionActions from "../../store/session";
 
 
-function Navigation() {
+function Navigation({ className }) {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 

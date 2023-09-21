@@ -9,6 +9,7 @@
   top: 0;
   width: 100%;
   font-family: 'Kanit', sans-serif;
+  height: 64px;
 
 }
 
@@ -35,7 +36,7 @@ button {
 
 /* Seer Link */
 .seer-link {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 700;
 }
 
@@ -50,7 +51,7 @@ button {
 /* Log In and Sign Up */
 .session-links .nav-link, button.nav-link {
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 /* Hover Effects */
@@ -60,8 +61,8 @@ button {
 
 /* Seer Logo */
 .seer-logo {
-  height: 32px;
-  margin-right: 10px;
+  height: 24px;
+  margin-right: 5px;
 }
 
 .nav-item {

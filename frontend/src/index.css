@@ -5,3 +5,28 @@ body {
     font-family: 'Kanit', sans-serif;
     font-weight: 300;
 }
+
+
+/* Ensure the page takes full height */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Your App's main container should stretch and push the footer down */
+  .main-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Your content should grow to take available space */
+  .content {
+    flex: 1;
+  }
+  
+  /* Footer will take its natural height and not more */
+  .footer {
+    flex-shrink: 0;
+  }
+  

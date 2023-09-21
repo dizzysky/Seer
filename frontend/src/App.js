@@ -6,6 +6,7 @@ import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import PhotosPage from './components/PhotosPage';
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <PhotosPage /> 
         </Route>
       </Switch>
+      <Footer/>
     </>
   );
 }

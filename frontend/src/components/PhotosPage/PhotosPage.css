@@ -1,0 +1,22 @@
+.photos-page-container {
+    margin-top: 80px;
+  }
+  
+  .loading-container {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  
+
+
+  .masonry-grid {
+    column-count: 4;
+    column-gap: 16px;
+  }
+  
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+  

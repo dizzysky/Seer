@@ -16,7 +16,7 @@ export const fetchPhotos = () => async dispatch => {
 
 
 const initialState = {
-    photos: [], 
+    // photos: [], 
     // errors: null,
 };
 

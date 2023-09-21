@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { fetchPhotos } from '../../store/photos'; 
 import man from './IMG_2845.PNG';
 import PhotoItem from '../PhotoItem';
@@ -7,9 +7,9 @@ import PhotoItem from '../PhotoItem';
 const PhotosPage = () => {
   const dispatch = useDispatch();
   const photos = useSelector(state => {
-    console.log("Photos from Redux: ", state.photos);
-    return Object.values(state.photos);
-}); // Assuming photos might be undefined or null
+    const allPhotos = Object.values(state.photos);
+    return allPhotos;
+}, shallowEqual); // Assuming photos might be undefined or null
 
   useEffect(() => {
     dispatch(fetchPhotos());

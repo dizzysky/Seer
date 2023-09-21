@@ -1,7 +1,7 @@
 // frontend/src/components/Navigation/index.js
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -10,6 +10,8 @@ import * as sessionActions from "../../store/session";
 
 
 function Navigation({ className }) {
+  const location = useLocation();
+  const isSplashPage = location.pathname === '/';
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -39,7 +41,7 @@ function Navigation({ className }) {
   }
 
   return (
-    <ul className="nav-list">
+    <ul className={`nav-list ${isSplashPage ? 'translucent' : ''}`}>
       <li className="nav-item">
         <NavLink className="nav-link seer-link" exact to="/" activeClassName="active">
         <img src={logo} alt="Seer logo" className="seer-logo" />

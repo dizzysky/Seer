@@ -10,25 +10,28 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <>
+    <div className="main-container">
       <Navigation />
-      <Switch>
-        <Route exact path="/">
-          <SplashPage />
-        </Route>
-        <Route path="/login">
-          <LoginFormPage />
-        </Route>
-        <Route path="/signup">
-          <SignupFormPage/> 
-        </Route>
-        <Route path="/photos">
-          <PhotosPage /> 
-        </Route>
-      </Switch>
-      <Footer/>
-    </>
+      <div className="content">
+        <Switch>
+          <Route exact path="/">
+            <SplashPage />
+          </Route>
+          <Route path="/login">
+            <LoginFormPage />
+          </Route>
+          <Route path="/signup">
+            <SignupFormPage/>
+          </Route>
+          <Route path="/photos">
+            <PhotosPage />
+          </Route>
+        </Switch>
+      </div>
+      <Footer className="footer" />
+    </div>
   );
 }
+
 
 export default App;

@@ -15,18 +15,17 @@ html, body {
   
   /* Your App's main container should stretch and push the footer down */
   .main-container {
-    min-height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
   
   /* Your content should grow to take available space */
   .content {
-    flex: 1;
+    flex-grow: 1;
   }
   
   /* Footer will take its natural height and not more */
   .footer {
     flex-shrink: 0;
   }
-  

@@ -35,7 +35,7 @@ function Navigation({ className }) {
         <>
           <button className="nav-link" onClick={handleDemoLogin}>Demo Log In</button>
           <NavLink className="nav-link" to="/login">Log In</NavLink>
-          <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
+          <NavLink className="nav-link signup-button" to="/signup">Sign Up</NavLink>
         </>
       );
   }

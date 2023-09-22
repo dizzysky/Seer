@@ -6,6 +6,18 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url("../../assets/IMG_5447.JPG");
+    position: relative;  /* Make this a positioned parent */
+}
+
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
+    z-index: 1;
 }
 
 .login-form {
@@ -14,7 +26,12 @@
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     width: 300px;
+    position: relative;  /* Position this above the overlay */
+    z-index: 2;
 }
+
+/* ... rest of your styles unchanged ... */
+
 
 h1 {
     margin-bottom: 20px;

@@ -15,6 +15,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :photos, foreign_key: 'uploader_id', dependent: :destroy
+
 
   validates :username, 
     uniqueness: true, 

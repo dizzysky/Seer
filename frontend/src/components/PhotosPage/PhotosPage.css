@@ -9,14 +9,23 @@
   }
   
 
-
+  .masonry-grid-container {
+    border: 1px solid black;
+  }
+  
   .masonry-grid {
     column-count: 4;
     column-gap: 16px;
+    border: 1px solid red; /* Debugging border */
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .masonry-item {
     break-inside: avoid;
     margin-bottom: 16px;
+    border: 1px solid blue; /* Debugging border */
   }
+  
+  
   

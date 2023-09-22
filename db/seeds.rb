@@ -55,6 +55,24 @@ ApplicationRecord.transaction do
         album_id: nil, 
         created_at: Time.now, 
         updated_at: Time.now
+      },
+      {caption: 'saw this yesterday',
+        uploader_id: 2,
+        album_id: nil,
+        created_at: Time.now,
+        updated_at: Time.now
+      },
+      {caption: 'very sleepy',
+        uploader_id: 2, 
+        album_id: nil, 
+        created_at: Time.now,
+        updated_at: Time.now
+      },
+      {caption: 'view from hell',
+        uploader_id: 3,
+        album_id: nil, 
+        created_at: Time.now,
+        updated_at: Time.now
       }
     ])
 

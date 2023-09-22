@@ -16,20 +16,23 @@ const PhotosPage = () => {
   return (
     <div className="photos-page-container"> 
       <h1>Photos</h1>
-      <div className="masonry-grid">
-        {Array.isArray(photos) && photos.length > 0 ? (
-          photos.map((photo) => (
-            <PhotoItem key={photo.id} photo={photo} />
-          ))
-        ) : (
-          <div className="loading-container">
-            <p>waiting for seeded photos to appear...</p>
-            {/* Your loading image here */}
-          </div>
-        )}
+      <div className="masonry-grid-container">
+        <div className="masonry-grid">
+          {Array.isArray(photos) && photos.length > 0 ? (
+            photos.map((photo) => (
+              <PhotoItem key={photo.id} photo={photo} />
+            ))
+          ) : (
+            <div className="loading-container">
+              <p>Waiting for seeded photos to appear...</p>
+              {/* Your loading image here */}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
+  
 };
 
 export default PhotosPage;

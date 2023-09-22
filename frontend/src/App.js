@@ -1,6 +1,6 @@
 // frontend/src/App.js
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
@@ -8,7 +8,10 @@ import SplashPage from './components/SplashPage';
 import PhotosPage from './components/PhotosPage';
 import Footer from './components/Footer'
 
+
 function App() {
+  const location = useLocation();
+  const currentPath = location.pathname;
   return (
     <div className="main-container">
       <Navigation />
@@ -28,7 +31,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-      <Footer className="footer" />
+      {(currentPath !== '/login' && currentPath !== '/signup') && <Footer className="footer" />}
     </div>
   );
 }

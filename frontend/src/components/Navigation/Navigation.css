@@ -91,7 +91,14 @@ button.nav-link {
 }
 
 
-.signup-button {
+
+
+.session-links {
+  align-items: center;
+}
+
+
+.navbar-signup-button {
   box-sizing: border-box;
   background-color: white;
   color: black;
@@ -109,12 +116,6 @@ button.nav-link {
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
-}
-
-
-.session-links {
-  align-items: center;
-  /* ...other styles */
 }
 
 

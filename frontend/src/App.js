@@ -6,6 +6,7 @@ import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import PhotosPage from './components/PhotosPage';
+import PhotoShow from './components/PhotoShow';
 import Footer from './components/Footer'
 
 
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage/>
+          </Route>
+          <Route path="/photos/:id">
+            <PhotoShow /> {/* your component to show individual photos */}
           </Route>
           <Route path="/photos">
             <PhotosPage />

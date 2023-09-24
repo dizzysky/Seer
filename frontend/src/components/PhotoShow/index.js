@@ -1,28 +1,28 @@
-// frontend/src/components/PhotoShow.js
 import React, { useEffect } from 'react';
+import { fetchPhoto } from '../../store/photos';
+import { useParams } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPhotoById } from '../../store/photos'; // hypothetical action to fetch single photo
 
-const PhotoShow = ({ photoId }) => {
+const PhotoShow = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const photo = useSelector(state => state.photos[photoId]);
-
+  const photo = useSelector(state => state.photos[id]);
+  
   useEffect(() => {
-    dispatch(fetchPhotoById(photoId));
-  }, [dispatch, photoId]);
+    dispatch(fetchPhoto(id));
+  }, [dispatch, id]);
+
+  if (!photo) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      {photo ? (
-        <>
-          <h1>{photo.caption}</h1>
-         {/* OTHER DETAILS TO BE ADDED, KYLE*/}
-        </>
-      ) : (
-        <p>Loading photo...</p>
-      )}
+      <div>{photo.title}</div>
     </div>
   );
 };
+
 
 export default PhotoShow;

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { fetchPhotos } from '../../store/photos';
 import PhotoItem from '../PhotoItem';
-import './PhotosPage.css';  // Your styles here
+import { Link } from 'react-router-dom';
+import './PhotosPage.css'; 
 
 const PhotosPage = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,10 @@ const PhotosPage = () => {
       <div className="grid">
         {Array.isArray(photos) && photos.length > 0 ? (
           photos.map((photo) => (
-            <PhotoItem key={photo.id} photo={photo} />
+
+            <Link to={`/photos/${photo.id}`} key={photo.id}>
+              <PhotoItem key={photo.id} photo={photo} />
+            </Link>
           ))
         ) : (
           <div className="loading-container">

@@ -18,8 +18,14 @@ const PhotoShow = () => {
   }
 
   return (
-    <div>
-      <div>{photo.title}</div>
+    <div className="photo-show-container">
+      <h1>{photo.title}</h1>
+      <img src={photo.imageURL} alt={photo.title} />
+      <p>{photo.caption}</p>
+      <div className="photo-info">
+        <span>Photographer: {photo.photographer}</span>
+        <span>Date: {photo.date}</span>
+      </div>
     </div>
   );
 };

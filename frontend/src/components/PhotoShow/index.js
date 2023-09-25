@@ -8,7 +8,7 @@ const PhotoShow = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const photo = useSelector(state => state.photos[id]);
-  
+
   useEffect(() => {
     dispatch(fetchPhoto(id));
   }, [dispatch, id]);
@@ -17,22 +17,28 @@ const PhotoShow = () => {
     return <div>Loading...</div>;
   }
 
+  // Destructuring for convenience
+  const { title, description, user } = photo;
+
+  // Determine the name to display
+  const displayName = user ? (user.first_name && user.last_name ? `${user.first_name} ${user.last_name}` : user.username) : 'Loading...';
+
+
   return (
     <div>
       <div className="grey-area">
-        {/* Your photo here. Assuming it's in an img tag. */}
-        <p>placeholder</p>
-        <img src={photo.url} alt={photo.title} />
+        <img src={photo.url} alt={title} />
       </div>
       <div className="photo-details">
-        {/* Your additional photo data here */}
-        <p>Title: {photo.title}</p>
-        <p>Description: {photo.description}</p>
-        {/* Other details */}
+        <p>Title: {title}</p>
+        <p>Description: {description}</p>
+        <p>Uploaded by: {displayName}</p>
+        {/* Add your comment section here */}
       </div>
     </div>
   );
 };
+
 
 
 export default PhotoShow;

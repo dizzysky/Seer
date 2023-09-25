@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :users, only: :create
     resource :session, only: [:show, :create, :destroy]
     resources :photos, only: [:show, :index]
+    resources :photos do
+      resources :comments, only: [:create, :index, :destroy]
+    end
   end
 
 

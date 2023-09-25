@@ -120,6 +120,11 @@ button.nav-link {
   background-color: rgba(44, 62, 80, 0.5) !important;
 }
 
+.nav-list.dark {
+  background-color: #121213;
+}
+
+
 
 
 

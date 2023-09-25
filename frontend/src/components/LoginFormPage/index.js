@@ -12,7 +12,7 @@ function LoginFormPage() {
     const [errors, setErrors] = useState([]);
     const [invalidFields, setInvalidFields] = useState({ credential: false, password: false });
   
-    if (sessionUser) return <Redirect to="/" />;
+    if (sessionUser) return <Redirect to="/photos" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();

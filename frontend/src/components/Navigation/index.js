@@ -17,8 +17,17 @@ function Navigation({ className }) {
 
   const handleDemoLogin = async () => {
     const demoUserData = { credential: 'demo@user.io', password: 'password' };
-    dispatch(sessionActions.login(demoUserData));
+    await dispatch(sessionActions.login(demoUserData));
+    window.location.href = '/photos';  // Navigate to Explore Photos page
   };
+  
+
+  const getNavBarClass = () => {
+    if (isSplashPage) return 'translucent';
+    if (location.pathname === '/login' || location.pathname === '/signup') return '';
+    return 'dark';
+  };
+  
 
   let sessionLinks;
   if (sessionUser) {
@@ -41,7 +50,7 @@ function Navigation({ className }) {
   console.log('Look here', isSplashPage);
 
   return (
-    <ul className={`nav-list ${isSplashPage ? 'translucent' : ''}`}>
+    <ul className={`nav-list ${getNavBarClass()}`}>
       <li className="nav-item">
         <NavLink className="nav-link seer-link" exact to="/" activeClassName="active">
         <img src={logo} alt="Seer logo" className="seer-logo" />

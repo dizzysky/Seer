@@ -13,27 +13,29 @@ const PhotoShow = () => {
   useEffect(() => {
     dispatch(fetchPhoto(id));
   }, [dispatch, id]);
+  console.log('AYYYY',photo);
 
   if (!photo) {
     return <div>Loading...</div>;
   }
 
   // Destructuring for convenience
-  const { title, description, user } = photo;
+  const { caption, user } = photo;
 
   // Determine the name to display
   const displayName = user ? (user.first_name && user.last_name ? `${user.first_name} ${user.last_name}` : user.username) : 'Loading...';
-
+  
+  const uploadTime = photo.created_at ? new Date(photo.created_at).toLocaleString() : 'Unknown';
 
   return (
     <div>
       <div className="grey-area">
-        <img src={photo.url} alt={title} />
+        <img src={photo.url}/>
       </div>
       <div className="photo-details">
-        <p>Title: {title}</p>
-        <p>Description: {description}</p>
+        <p>Description: {caption}</p>
         <p>Uploaded by: {displayName}</p>
+        <p>Uploaded at: {uploadTime}</p>
         <CommentList/>
       </div>
     </div>

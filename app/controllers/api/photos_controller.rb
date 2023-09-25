@@ -10,6 +10,42 @@ class Api::PhotosController < ApplicationController
         render json: photo
     end
 
+    def create
+        @photo = Photo.new(photo_params)
+        @photo.uploader_id = current_user.id
+        if @photo.save
+            render json: @photo, status: :created
+        else
+            render json: @photo.errors.full_messages, status: :unprocessable_entity
+        end
+    end
 
+
+    def edit 
+        @photo = Photo.find(params[:id])
+    end
+
+    def update
+        @photo = Photo.find(params[:id])
+
+        if @photo.update(photo_params)
+            render json: @photo
+        else
+            render json: @photo.errors.full_messages, status: 422
+        end
+    end
+
+
+    def destroy 
+        @photo = Photo.find(params[:id])
+        @photo.destroy
+
+    end
+
+    private
+
+    def photo_params 
+        params.require(:photo).permit(:title, :description, :photo) 
+    end
 
 end

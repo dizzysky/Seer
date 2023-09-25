@@ -29,8 +29,6 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
-  console.log(showMenu);
-  console.log(user);
 
   return (
     <>

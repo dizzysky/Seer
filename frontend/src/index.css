@@ -4,7 +4,10 @@
 body {
     font-family: 'Kanit', sans-serif;
     font-weight: 300;
+    /* margin-top: 64px; */
 }
+
+
 
 
 /* Ensure the page takes full height */
@@ -23,6 +26,7 @@ html, body {
   /* Your content should grow to take available space */
   .content {
     flex-grow: 1;
+    /* margin-top: 64px; */
   }
   
   /* Footer will take its natural height and not more */

@@ -16,9 +16,7 @@ function Navigation({ className }) {
   const dispatch = useDispatch();
 
   const handleDemoLogin = async () => {
-    console.log("we in here");
     const demoUserData = { credential: 'demo@user.io', password: 'password' };
-    console.log(demoUserData);
     dispatch(sessionActions.login(demoUserData));
   };
 
@@ -39,6 +37,8 @@ function Navigation({ className }) {
         </>
       );
   }
+
+  console.log('Look here', isSplashPage);
 
   return (
     <ul className={`nav-list ${isSplashPage ? 'translucent' : ''}`}>

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { fetchPhoto } from '../../store/photos';
 import { useParams } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
+import './PhotoShow.css';
 
 const PhotoShow = () => {
   const { id } = useParams();
@@ -18,13 +18,17 @@ const PhotoShow = () => {
   }
 
   return (
-    <div className="photo-show-container">
-      <h1>{photo.title}</h1>
-      <img src={photo.imageURL} alt={photo.title} />
-      <p>{photo.caption}</p>
-      <div className="photo-info">
-        <span>Photographer: {photo.photographer}</span>
-        <span>Date: {photo.date}</span>
+    <div>
+      <div className="grey-area">
+        {/* Your photo here. Assuming it's in an img tag. */}
+        <p>placeholder</p>
+        <img src={photo.url} alt={photo.title} />
+      </div>
+      <div className="photo-details">
+        {/* Your additional photo data here */}
+        <p>Title: {photo.title}</p>
+        <p>Description: {photo.description}</p>
+        {/* Other details */}
       </div>
     </div>
   );

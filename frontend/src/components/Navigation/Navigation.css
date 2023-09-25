@@ -71,9 +71,7 @@ button {
 }
 
 
-.nav-list.translucent {
-  background-color: rgba(44, 62, 80, 0.5); /* Adjust the alpha value as you like */
-}
+
 
 
 /* Button Styles */
@@ -116,6 +114,10 @@ button.nav-link {
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
+}
+
+.nav-list.translucent {
+  background-color: rgba(44, 62, 80, 0.5) !important;
 }
 
 

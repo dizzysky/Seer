@@ -6,8 +6,12 @@ class Api::PhotosController < ApplicationController
     end
 
     def show 
-        photo = Photo.find(params[:id])
-        render json: photo
+        @photo = Photo.find(params[:id])
+        render :show
+        # username = photo.uploader.username # Assuming 'uploader' is an association
+        # photo_data = photo.attributes.merge("username" => username)
+        # debugger
+        # render json: photo_data
     end
 
     def create

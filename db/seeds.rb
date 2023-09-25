@@ -77,3 +77,14 @@ ApplicationRecord.transaction do
 
     puts "Created example photos!"
   end
+
+
+
+  # Bench.first(3).each_with_index do |bench, index|
+  #   bench.photo.attach(
+  #     # The string passed to URI.open should be the URL of the image in its bucket.
+  #     # This sample assumes the bucket name is `benchbnb-seeds`.
+  #     io: URI.open("https://benchbnb-seeds.s3.amazonaws.com/bench_#{index + 1}.jpg"), 
+  #     filename: "bench_#{index + 1}.jpg"
+  #   )
+  # end

@@ -47,8 +47,6 @@ function Navigation({ className }) {
       );
   }
 
-  console.log('Look here', isSplashPage);
-
   return (
     <ul className={`nav-list ${getNavBarClass()}`}>
       <li className="nav-item">

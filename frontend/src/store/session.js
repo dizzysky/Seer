@@ -9,6 +9,21 @@ export const setCurrentUser = (user) => ({
     payload: user
 });
 
+// const setUser = (user) => ({
+//   type: 'SET_USER',
+//   user
+// });
+
+
+// export const fetchUserById = (userId) => async dispatch => {
+//   const response = await fetch(`/api/users/${userId}`);
+//   if (response.ok) {
+//     const user = await response.json();
+//     dispatch(setUser(user)); // assuming you have a setUser action to save user in store
+//   }
+// };
+
+
 export const removeCurrentUser = () => ({
     type: REMOVE_CURRENT_USER
 });

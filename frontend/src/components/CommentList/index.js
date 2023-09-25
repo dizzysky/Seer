@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import * as commentActions from '../store/comments';
-import CommentItem from './CommentItem';
+import * as commentActions from '../../store/comments';
+import CommentItem from '../CommentItem';
 
 const CommentList = () => {
   const dispatch = useDispatch();

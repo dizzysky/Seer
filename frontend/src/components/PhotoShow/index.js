@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { fetchPhoto } from '../../store/photos';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import CommentList from '../CommentList';
 import './PhotoShow.css';
 
 const PhotoShow = () => {
@@ -33,7 +34,7 @@ const PhotoShow = () => {
         <p>Title: {title}</p>
         <p>Description: {description}</p>
         <p>Uploaded by: {displayName}</p>
-        {/* Add your comment section here */}
+        <CommentList/>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Api::CommentsController < ApplicationController
     before_action :require_logged_in
   
     def index
@@ -19,19 +19,19 @@ class CommentsController < ApplicationController
     end
   
     def destroy
-      @comment = Comment.find(params[:id])
-  
-      if @comment.author_id == current_user.id
-        @comment.destroy
-        render :show
-      else
-        render json: ['You do not have permission to delete this comment'], status: 403
-      end
+        @comment = Comment.find(params[:id])
+
+        if @comment.author_id == current_user.id
+            @comment.destroy
+            render :show
+        else
+            render json: ['You do not have permission to delete this comment'], status: 403
+        end
     end
-  
+
     private
     def comment_params
-      params.require(:comment).permit(:body)
+        params.require(:comment).permit(:body)
     end
-  end
+end
   

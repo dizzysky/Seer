@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 // Action Types
 const SET_COMMENTS = 'comments/SET_COMMENTS';
 const ADD_COMMENT = 'comments/ADD_COMMENT';
@@ -21,6 +23,14 @@ export const removeComment = (commentId) => ({
 
 // Initial State
 const initialState = {};
+
+export const fetchComments = (photoId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/photos/${photoId}/comments`);
+    if (response.ok) {
+      const comments = await response.json();
+      dispatch(setComments(comments));
+    }
+  };
 
 // Reducer
 const commentsReducer = (state = initialState, action) => {

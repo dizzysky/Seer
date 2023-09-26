@@ -30,6 +30,8 @@ export const createPhoto = (formData) => async dispatch => {
         body: formData,
     });
     const data = await res.json();
+    
+
     dispatch(uploadPhoto(data));
 };
 
@@ -38,12 +40,14 @@ export const createPhoto = (formData) => async dispatch => {
 export const fetchPhotos = () => async dispatch => {
     const res = await csrfFetch('/api/photos');
     const data = await res.json();
+    console.log("Fetched PHOTOSSSSS:", data);
     dispatch(loadPhotos(data));
 };
 
 export const fetchPhoto = (id) => async dispatch => {
     const res = await csrfFetch(`/api/photos/${id}`);
     const data = await res.json();
+    console.log("Fetched PHOTO:", data);
     dispatch(receivePhoto(data));
 }
 

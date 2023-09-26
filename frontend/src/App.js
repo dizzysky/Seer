@@ -28,7 +28,7 @@ function App() {
             <SignupFormPage/>
           </Route>
           <Route path="/photos/:id">
-            <PhotoShow /> {/* your component to show individual photos */}
+            <PhotoShow />
           </Route>
           <Route path="/photos">
             <PhotosPage />

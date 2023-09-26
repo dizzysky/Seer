@@ -20,7 +20,6 @@ const PhotoShow = () => {
   }
 
   const uploadTime = photo.createdAt ? new Date(photo.createdAt).toLocaleString() : 'Unknown';
-  console.log('REDUX STATE:', photo);
 
   return (
     <div>

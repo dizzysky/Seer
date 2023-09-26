@@ -4,7 +4,6 @@ import { uploadPhoto } from '../../store/photos';
 import { createPhoto } from '../../store/photos';
 
 const PhotoUpload = () => {
-  console.log('AJIFEOJF');
 
   const [photoFile, setPhotoFile] = useState(null);
   const [caption, setCaption] = useState('');

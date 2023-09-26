@@ -5,35 +5,39 @@
     border: 2px solid red;
   }
 
-
-
-
   .grid-container {
     margin-top: 80px;
     border: 2px solid black;
     display: flex;
     justify-content: center;
-    /* text-align: center; */
   }
   
   .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    justify-items: center;
-    justify-content: space-around;
-    align-items: center;
+    column-count: 4;
+    column-gap: 16px;
     margin: 0 auto;
-    margin-left: auto; 
-    margin-right: auto;
-    width: 60%;
-    border: 2px dotted black;
-    gap: 20px 20px;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
-
-  .grid > div {
-    text-align: center;
+  @media (min-width: 1024px) {
+    .grid {
+      padding-left: 180px;
+      padding-right: 180px;
+    }
   }
+  
+  
+  
+
+.grid > div {
+  background-color: #eee;
+  display: inline-block;
+  margin: 0 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
   
   
   

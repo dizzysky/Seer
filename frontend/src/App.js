@@ -8,7 +8,7 @@ import SplashPage from './components/SplashPage';
 import PhotosPage from './components/PhotosPage';
 import PhotoShow from './components/PhotoShow';
 import Footer from './components/Footer'
-
+import PhotoUpload from './components/PhotoUpload';
 
 function App() {
   const location = useLocation();
@@ -32,6 +32,9 @@ function App() {
           </Route>
           <Route path="/photos">
             <PhotosPage />
+          </Route>
+          <Route path="/upload">
+            <PhotoUpload />
           </Route>
         </Switch>
       </div>

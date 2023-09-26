@@ -22,7 +22,7 @@ export const uploadPhoto = (photo) => ({
 
 
 export const createPhoto = (formData) => async dispatch => {
-    const res = await csrfFetch('/api/photo', {
+    const res = await csrfFetch('/api/photos', {
         method: 'POST', 
         headers: {
             'Content-Type': 'multipart/form-data',

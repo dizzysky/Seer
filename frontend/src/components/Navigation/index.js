@@ -7,6 +7,8 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import logo from '../../assets/flickr.png';
 import * as sessionActions from "../../store/session";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
 
 function Navigation({ className }) {
@@ -32,10 +34,13 @@ function Navigation({ className }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-        <div className="profile-button-container">
+      <div className="profile-button-container">
+        {/* Add the upload icon here */}
+        <NavLink to="/upload"> 
+          <FontAwesomeIcon icon={faUpload} /> 
+        </NavLink>
         <ProfileButton user={sessionUser} />
       </div>
-      
     );
   } else {
     sessionLinks = (

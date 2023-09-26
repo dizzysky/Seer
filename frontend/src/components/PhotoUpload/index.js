@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { uploadPhoto } from './yourReduxActions'; // Replace with your actual action
+import { uploadPhoto } from '../../store/photos'; 
 import { createPhoto } from '../../store/photos';
 
 const PhotoUpload = () => {
+  console.log('AJIFEOJF');
+
   const [photoFile, setPhotoFile] = useState(null);
   const [caption, setCaption] = useState('');
   const dispatch = useDispatch();
@@ -22,11 +24,17 @@ const PhotoUpload = () => {
     formData.append('photo', photoFile);
     formData.append('caption', caption);
 
-    // Dispatch action to upload photo
+
     dispatch(createPhoto(formData));
   };
 
+
   return (
+    <div className="photo-upload-container">
+      <div style={{ width: '300px', height: '300px', backgroundColor: 'lightgray' }}>
+        <p>I DARE YOU</p>
+      </div>
+
     <form onSubmit={handleSubmit}>
       <label htmlFor="caption">Caption</label>
       <input type="text" id="caption" value={caption} onChange={handleCaption} required />
@@ -35,6 +43,7 @@ const PhotoUpload = () => {
 
       <button type="submit">Upload Photo</button>
     </form>
+    </div>
   );
 };
 

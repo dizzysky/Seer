@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   get 'photos/show_html/:id', to: 'photos#show_html', as: 'photo_show_html'
   post '/api/photos', to: 'photos#create'
 

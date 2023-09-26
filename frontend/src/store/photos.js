@@ -20,6 +20,9 @@ export const uploadPhoto = (photo) => ({
     photo,
 });
 
+export const getPhoto = (photoId) => (state) => {
+    return state.photos.photoId ? state.photos.photoId : [];
+}
 
 export const createPhoto = (formData) => async dispatch => {
     const res = await csrfFetch('/api/photos', {

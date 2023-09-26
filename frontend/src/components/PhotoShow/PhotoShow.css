@@ -5,12 +5,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.grey-area img {
+    max-width: 100%; /* Set maximum width */
+    max-height: 100%; /* Set maximum height */
+    object-fit: contain; /* Maintain aspect ratio */
 }
 
 .photo-details {
-padding: 20px;
+    padding: 20px;
 }
-
 
 div {
     border: 1px solid black;

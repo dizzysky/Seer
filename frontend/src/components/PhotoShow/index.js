@@ -15,18 +15,17 @@ const PhotoShow = () => {
     dispatch(fetchPhoto(id));
   }, [dispatch, id]);
 
-
   if (!photo) {
     return <div>Loading...</div>;
   }
 
   const uploadTime = photo.createdAt ? new Date(photo.createdAt).toLocaleString() : 'Unknown';
-  console.log('LOOK HERE', photo.username);
+  console.log('REDUX STATE:', photo);
 
   return (
     <div>
       <div className="grey-area">
-        <img src={photo.url}/>
+        <img src={photo.photoUrl} alt="Photo description" />
       </div>
       <div className="photo-details">
         <p>Description: {photo.caption}</p>
@@ -36,9 +35,7 @@ const PhotoShow = () => {
       </div>
     </div>
   );
+  
 };
-
-
-
 
 export default PhotoShow;

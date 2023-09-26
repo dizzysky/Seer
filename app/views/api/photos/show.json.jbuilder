@@ -2,6 +2,8 @@
 
 json.extract! @photo, :id, :caption, :uploader_id, :album_id, :created_at, :updated_at
 json.username @photo.uploader.username
+json.photoUrl url_for(@photo.photo) if @photo.photo.attached?
+
 
 # json.photo do
 #     json.extract! @photo, :id, :caption, :uploader_id, :album_id, :created_at, :updated_at

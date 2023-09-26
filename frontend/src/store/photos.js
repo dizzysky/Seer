@@ -2,6 +2,7 @@ import csrfFetch from "./csrf";
 
 const LOAD_PHOTOS = 'photos/LOAD_PHOTOS';
 const RECEIVE_PHOTO = 'photos/RECEIVE_PHOTO';
+const UPLOAD_PHOTO = 'photos/UPLOAD_PHOTO';
 
 export const loadPhotos = (photos) => ({
     type: LOAD_PHOTOS,
@@ -11,7 +12,26 @@ export const loadPhotos = (photos) => ({
 export const receivePhoto = (photo) => ({
     type: RECEIVE_PHOTO,
     photo
-})
+});
+
+
+export const uploadPhoto = (photo) => ({
+    type: UPLOAD_PHOTO,
+    photo,
+});
+
+
+export const createPhoto = (formData) => async dispatch => {
+    const res = await csrfFetch('/api/photo', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        body: formData,
+    });
+    const data = await res.json();
+    dispatch(uploadPhoto(data));
+};
 
 
 
@@ -33,6 +53,8 @@ const photosReducer = (state = {}, action) => {
         case LOAD_PHOTOS: 
             return { ...state, ...action.payload };
         case RECEIVE_PHOTO:
+            return { ...state, [action.photo.id]: action.photo };
+        case UPLOAD_PHOTO: 
             return { ...state, [action.photo.id]: action.photo };
         default: 
             return state;

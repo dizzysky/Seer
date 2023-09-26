@@ -9,11 +9,65 @@
     width: auto;
   }
    */
-.photo-item {
-max-height: 200px;
-width: 100%;
-object-fit: cover;
-display: block;
+   .image-wrapper {
+    position: relative;
   }
+  
+  .photo-item {
+    max-height: 200px;
+    object-fit: cover;
+    width: auto;
+    height: 100%;
+    transition: .3s;
+  }
+  
+  .caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); 
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: height .3s ease, opacity .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    color:white;
+  }
+  
+  
+  .image-wrapper:hover .photo-item {
+    opacity: 0.7;
+  }
+  
+  .image-wrapper:hover .caption-overlay {
+    height: 50%;
+    opacity: 1;
+  }
+  
+  .caption-text {
+    color: white; /* Explicitly set the text color to white */
+    font-size: 16px;
+    text-align: center;
+  }
+  
   
   

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     end
   end
 
+
+  get 'photos/show_html/:id', to: 'photos#show_html', as: 'photo_show_html'
+
   # Move the catch-all to the end
   get '*path', to: "static_pages#frontend_index"
 end

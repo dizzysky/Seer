@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPhoto } from '../../store/photos';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { deletePhoto } from '../../store/photos';
 
 import './PhotoShow.css';
 
@@ -13,6 +14,7 @@ const PhotoShow = () => {
   const dispatch = useDispatch();
   const photo = useSelector(state => state.photos[id]);
   const photoIds = useSelector(state => Object.keys(state.photos));
+  const sessionUser = useSelector((state) => state.session.user);
   console.log("photo ids: ", photoIds);
 
   const currentIndex = photoIds.indexOf(id);
@@ -33,11 +35,24 @@ const PhotoShow = () => {
     return <div>Loading...</div>;
   }
 
+  const handleDelete = async () => {
+    try {
+      await dispatch(deletePhoto(photo.id));
+      history.push('/photos')
+    } catch (error) {
+      console.error('Delete error: ', error);
+    }
+  };
+
   const uploadTime = photo.createdAt ? new Date(photo.createdAt).toLocaleString() : 'Unknown';
   console.log('Current:', id, 'Prev:', prevPhotoId, 'Next:', nextPhotoId);
 
   return (
     <div>
+      {/* Render the delete button for the uploader */}
+      {sessionUser && sessionUser.id === photo.userId && (
+        <button onClick={handleDelete} className="delete-button">Delete Photo</button>
+      )}
       <div className="grey-area">
         <button className="arrow-button left" onClick={() => navigateToPhoto(prevPhotoId)}>
           <FontAwesomeIcon icon={faChevronLeft} className="arrow-icon" />

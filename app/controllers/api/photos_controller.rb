@@ -15,9 +15,8 @@ class Api::PhotosController < ApplicationController
     end
 
     def create
-        puts "Debugging Params: #{params.inspect}"
+
         @photo = Photo.new(photo_params)
-        puts "Debugging Photo Object: #{@photo.inspect}"
 
         @photo.uploader_id = current_user.id
         if @photo.save

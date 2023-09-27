@@ -27,9 +27,9 @@ const PhotoShow = () => {
         <img src={photo.photoUrl} alt="Photo description" />
       </div>
       <div className="photo-details">
-        <p>{photo.caption}</p>
-        <p>Uploaded by: {photo.username || 'Loading...'}</p>
-        <p>Uploaded at: {uploadTime}</p>
+        <p style={{ fontSize: '18px', textShadow: '1px 1px 1px gray'}}>{photo.caption}</p>
+        <p>by: {photo.username || 'Loading...'}</p>
+        <p>Uploaded on {uploadTime}</p>
         {/* <CommentList/> */}
       </div>
     </div>

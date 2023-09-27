@@ -26,10 +26,7 @@ export const getPhoto = (photoId) => (state) => {
 
 export const createPhoto = (formData) => async dispatch => {
     const res = await csrfFetch('/api/photos', {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
+        method: 'POST',
         body: formData,
     });
     const data = await res.json();

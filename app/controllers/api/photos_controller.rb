@@ -15,6 +15,7 @@ class Api::PhotosController < ApplicationController
     end
 
     def create
+        Rails.logger.info params.inspect
         @photo = Photo.new(photo_params)
         @photo.uploader_id = current_user.id
         if @photo.save

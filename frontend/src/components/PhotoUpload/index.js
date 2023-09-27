@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { uploadPhoto } from '../../store/photos'; 
 import { createPhoto } from '../../store/photos';
+import './PhotoUpload.css'
 
 const PhotoUpload = () => {
 
@@ -23,23 +24,22 @@ const PhotoUpload = () => {
     formData.append('photo[photo]', photoFile);
     formData.append('photo[caption]', caption);
     
-
     dispatch(createPhoto(formData));
   };
 
-
   return (
     <div className="photo-upload-container">
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="caption">Caption</label>
-      <input type="text" id="caption" value={caption} onChange={handleCaption} required />
+      <form className="upload-form" onSubmit={handleSubmit}>
+        {/* <label htmlFor="caption" className="caption-label">Caption</label> */}
+        <input type="text" id="caption" placeholder="Enter caption here" value={caption} onChange={handleCaption} required />
 
-      <input type="file" onChange={handleFile} required />
+        <input type="file" className="file-input" onChange={handleFile} required />
 
-      <button type="submit">Upload Photo</button>
-    </form>
+        <button type="submit" className="upload-button">Upload Photo</button>
+      </form>
     </div>
   );
 };
+
 
 export default PhotoUpload;

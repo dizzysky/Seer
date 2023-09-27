@@ -1,8 +1,4 @@
 class Api::PhotosController < ApplicationController
-
-    skip_before_action :verify_authenticity_token, only: [:update]
-
-
     def index 
         @photos = Photo.all
         render :index 
@@ -11,10 +7,6 @@ class Api::PhotosController < ApplicationController
     def show 
         @photo = Photo.find(params[:id])
         render :show
-        # username = photo.uploader.username # Assuming 'uploader' is an association
-        # photo_data = photo.attributes.merge("username" => username)
-        # debugger
-        # render json: photo_data
     end
 
     def create
@@ -23,12 +15,11 @@ class Api::PhotosController < ApplicationController
 
         @photo.uploader_id = current_user.id
         if @photo.save
-          render json: { message: 'Photo successfully uploaded' }, status: 200
+            render json: { message: 'Photo successfully uploaded' }, status: 200
         else
-          render json: { errors: @photo.errors.full_messages }, status: 400
+            render json: { errors: @photo.errors.full_messages }, status: 400
         end
-      end
-      
+    end
 
 
     def edit 

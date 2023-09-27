@@ -37,11 +37,11 @@ const PhotoShow = () => {
     <div>
       <div className="grey-area">
         <button className="arrow-button left" onClick={() => navigateToPhoto(prevPhotoId)}>Previous</button>
-        <img src={photo.photoUrl} alt="Photo description" />
+        <img src={photo.photoUrl} alt="description" />
         <button className="arrow-button right" onClick={() => navigateToPhoto(nextPhotoId)}>Next</button>
       </div>
       <div className="photo-details">
-        <p>{photo.caption}</p>
+        <p style={{fontSize: "20px"}}>{photo.caption}</p>
         <p>Uploaded by: {photo.username || 'Loading...'}</p>
         <p>Uploaded at: {uploadTime}</p>
       </div>

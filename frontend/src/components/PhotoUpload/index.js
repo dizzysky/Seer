@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { uploadPhoto } from '../../store/photos'; 
+import { useHistory } from 'react-router-dom'; // Import useHistory
 import { createPhoto } from '../../store/photos';
 import './PhotoUpload.css'
 
@@ -9,6 +10,7 @@ const PhotoUpload = () => {
   const [photoFile, setPhotoFile] = useState(null);
   const [caption, setCaption] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory(); // Instantiate useHistory
 
   const handleFile = (e) => {
     setPhotoFile(e.currentTarget.files[0]);
@@ -18,13 +20,24 @@ const PhotoUpload = () => {
     setCaption(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('photo[photo]', photoFile);
     formData.append('photo[caption]', caption);
     
-    dispatch(createPhoto(formData));
+    try {
+      // Assuming createPhoto returns a Promise that resolves to the uploaded photo's details
+      const photoDetails = await dispatch(createPhoto(formData));
+      
+      if (photoDetails && photoDetails.id) {
+        history.push(`/photos/${photoDetails.id}`); // Redirect to the photo's show page
+      } else {
+        // Handle error: Photo details are incomplete
+      }
+    } catch (error) {
+      // Handle error: Failed to upload photo
+    }
   };
 
   return (

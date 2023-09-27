@@ -9,17 +9,19 @@ class Api::PhotosController < ApplicationController
         render :show
     end
 
-    def create
 
-        @photo = Photo.new(photo_params)
 
-        @photo.uploader_id = current_user.id
-        if @photo.save
-            render json: { message: 'Photo successfully uploaded' }, status: 200
-        else
-            render json: { errors: @photo.errors.full_messages }, status: 400
-        end
+def create
+    @photo = Photo.new(photo_params)
+    @photo.uploader_id = current_user.id
+    
+    if @photo.save
+      render json: { id: @photo.id }, status: :created
+    else
+      render json: @photo.errors, status: :unprocessable_entity
     end
+  end
+  
 
 
     def edit 

@@ -92,6 +92,21 @@ export const removePhoto = (photoId) => async dispatch => {
 };
 
 
+export const updatePhotoCaption = (photoId, newCaption) => async dispatch => {
+  const res = await csrfFetch(`/api/photos/${photoId}`, {
+    method: 'PUT',
+    body: JSON.stringify({caption: newCaption}),
+  });
+
+  if (res.ok) {
+    const updatedPhoto = await res.json(); 
+
+    dispatch(receivePhoto(updatedPhoto));
+    window.location.reload();
+  }
+}
+
+
 
 const photosReducer = (state = {}, action) => {
     switch (action.type) {

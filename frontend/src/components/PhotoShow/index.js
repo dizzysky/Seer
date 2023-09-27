@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPhoto, removePhoto } from '../../store/photos';
+import { fetchPhoto, removePhoto, updatePhotoCaption } from '../../store/photos';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { deletePhoto } from '../../store/photos';
+
 
 import './PhotoShow.css';
 
@@ -16,6 +16,9 @@ const PhotoShow = () => {
   const photoIds = useSelector(state => Object.keys(state.photos));
   const sessionUser = useSelector((state) => state.session.user);
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [newCaption, setNewCaption] = useState('');
+
   const currentIndex = photoIds.indexOf(id);
   const nextPhotoId = photoIds[currentIndex + 1];
   const prevPhotoId = photoIds[currentIndex - 1];
@@ -23,6 +26,12 @@ const PhotoShow = () => {
   useEffect(() => {
     dispatch(fetchPhoto(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (photo) {
+      setNewCaption(photo.caption);
+    }
+  }, [photo]);
 
   const navigateToPhoto = (newId) => {
     if (newId) {
@@ -36,17 +45,28 @@ const PhotoShow = () => {
 
   const handleDelete = async () => {
     try {
-      const result = await dispatch(removePhoto(photo.id));
-      history.push('/photos')
+      await dispatch(removePhoto(photo.id));
+      history.push('/photos');
     } catch (error) {
+      // Handle error
     }
+  };
+
+  const handleEditClick = () => {
+    if (sessionUser && sessionUser.id === photo.uploaderId) {
+      setIsEditing(true);
+    }
+  };
+
+  const handleSubmit = async () => {
+    await dispatch(updatePhotoCaption(photo.id, newCaption));
+    setIsEditing(false);
   };
 
   const uploadTime = photo.createdAt ? new Date(photo.createdAt).toLocaleString() : 'Unknown';
 
   return (
     <div>
-     
       <div className="grey-area">
         <button className="arrow-button left" onClick={() => navigateToPhoto(prevPhotoId)}>
           <FontAwesomeIcon icon={faChevronLeft} className="arrow-icon" />
@@ -57,18 +77,30 @@ const PhotoShow = () => {
         </button>
       </div>
       <div className="photo-details">
-        <p style={{ fontSize: "20px" }}>{photo.caption}</p>
+        {isEditing ? (
+          <div>
+            <input
+              value={newCaption}
+              onChange={(e) => setNewCaption(e.target.value)}
+            />
+            <button onClick={handleSubmit}>Submit</button>
+          </div>
+        ) : (
+          <p onClick={handleEditClick} style={{ fontSize: '20px' }}>
+            {photo.caption}
+          </p>
+        )}
         <p>Uploaded by: {photo.username || 'Loading...'}</p>
         <p>Uploaded at: {uploadTime}</p>
-         {/* Show delete button only if session user is the uploader */}
-      {sessionUser && sessionUser.id === photo.uploaderId && (
-        <button onClick={handleDelete} className="delete-button">
-          Delete Photo
-        </button>
-      )}
+        {sessionUser && sessionUser.id === photo.uploaderId && (
+          <button onClick={handleDelete} className="delete-button">
+            Delete Photo
+          </button>
+        )}
       </div>
     </div>
   );
 };
+
 
 export default PhotoShow;

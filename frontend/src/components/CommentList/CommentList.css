@@ -1,0 +1,27 @@
+.comment-list {
+    margin-top: 20px; /* Add some space above the comments */
+  }
+  
+  .comment-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .comment-item p {
+    margin: 0; /* Remove default margin for paragraphs */
+  }
+  
+  .comment-item button {
+    background-color: #d9534f; /* Red background color for delete buttons */
+    color: #fff; /* White text color for delete buttons */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .comment-item button:hover {
+    background-color: #c9302c; /* Darker red color on hover */
+  }
+  

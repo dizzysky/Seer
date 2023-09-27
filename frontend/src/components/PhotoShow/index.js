@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPhoto, removePhoto, updatePhotoCaption } from '../../store/photos';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import CommentList from '../CommentList';
+import CommentForm from '../CommentForm';
 
 
 import './PhotoShow.css';
@@ -98,6 +100,8 @@ const PhotoShow = () => {
           </button>
         )}
       </div>
+      <CommentList photoId={id}/>
+      <CommentForm photoId={id}/>
     </div>
   );
 };

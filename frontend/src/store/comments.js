@@ -24,13 +24,42 @@ export const removeComment = (commentId) => ({
 // Initial State
 const initialState = {};
 
+// Thunks
 export const fetchComments = (photoId) => async (dispatch) => {
+  try {
     const response = await csrfFetch(`/api/photos/${photoId}/comments`);
     if (response.ok) {
       const comments = await response.json();
       dispatch(setComments(comments));
+    } else {
+      // Handle error here
     }
-  };
+  } catch (error) {
+    // Handle error here
+  }
+};
+
+export const postComment = (photoId, commentData) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/api/photos/${photoId}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(commentData),
+    });
+
+    if (response.ok) {
+      const comment = await response.json();
+      dispatch(addComment(comment));
+      return comment;
+    } else {
+      // Handle error here
+    }
+  } catch (error) {
+    // Handle error here
+  }
+};
 
 // Reducer
 const commentsReducer = (state = initialState, action) => {

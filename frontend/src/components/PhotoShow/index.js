@@ -60,13 +60,13 @@ const PhotoShow = () => {
         <p style={{ fontSize: "20px" }}>{photo.caption}</p>
         <p>Uploaded by: {photo.username || 'Loading...'}</p>
         <p>Uploaded at: {uploadTime}</p>
-      </div>
-      {/* Show delete button only if session user is the uploader */}
+         {/* Show delete button only if session user is the uploader */}
       {sessionUser && sessionUser.id === photo.uploaderId && (
         <button onClick={handleDelete} className="delete-button">
           Delete Photo
         </button>
       )}
+      </div>
     </div>
   );
 };

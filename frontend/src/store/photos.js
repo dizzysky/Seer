@@ -24,16 +24,34 @@ export const getPhoto = (photoId) => (state) => {
     return state.photos.photoId ? state.photos.photoId : [];
 }
 
-export const createPhoto = (formData) => async dispatch => {
-    const res = await csrfFetch('/api/photos', {
+// Inside your Redux actions file
+export const createPhoto = (formData) => async (dispatch) => {
+    try {
+      const res = await csrfFetch('http://localhost:3000/api/photos', {
         method: 'POST',
         body: formData,
-    });
-    const data = await res.json();
-    
-
-    dispatch(uploadPhoto(data));
-};
+      });
+  
+      if (res.ok) {
+        const photo = await res.json();
+        dispatch(uploadPhoto(photo));
+        return photo;
+      } else if (res.status === 204) { // Fixed typo here from 'res.stats' to 'res.status'
+        console.log("Received 204, no content");
+      } else {
+        try {
+          const data = await res.json();
+          console.log("Upload error: ", data);
+        } catch (e) {
+          console.log("Upload error: syntax error");
+        }
+      }
+    } catch (e) {
+      console.log("Upload Error: ", e);
+    }
+  };
+  
+  
 
 
 

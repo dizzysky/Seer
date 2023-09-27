@@ -20,9 +20,13 @@ const PhotoUpload = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('photo', photoFile);
-    formData.append('caption', caption);
+    formData.append('photo[photo]', photoFile);
+    formData.append('photo[caption]', caption);
 
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]); 
+    }
+    
 
     dispatch(createPhoto(formData));
   };

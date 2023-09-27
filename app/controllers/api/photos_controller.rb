@@ -15,15 +15,18 @@ class Api::PhotosController < ApplicationController
     end
 
     def create
-        Rails.logger.info params.inspect
+        puts "Debugging Params: #{params.inspect}"
         @photo = Photo.new(photo_params)
+        puts "Debugging Photo Object: #{@photo.inspect}"
+
         @photo.uploader_id = current_user.id
         if @photo.save
-            render json: @photo, status: :created
+          render json: { message: 'Photo successfully uploaded' }, status: 200
         else
-            render json: @photo.errors.full_messages, status: :unprocessable_entity
+          render json: { errors: @photo.errors.full_messages }, status: 400
         end
-    end
+      end
+      
 
 
     def edit 
@@ -50,7 +53,7 @@ class Api::PhotosController < ApplicationController
     private
 
     def photo_params 
-        params.require(:photo).permit(:caption, :photo) 
+        params.require(:photo).permit(:photo, :caption, :uploader_id, :album_id) 
     end
 
 end

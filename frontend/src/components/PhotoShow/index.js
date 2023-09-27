@@ -10,6 +10,7 @@ const PhotoShow = () => {
   const dispatch = useDispatch();
   const photo = useSelector(state => state.photos[id]);
   const photoIds = useSelector(state => Object.keys(state.photos));
+  console.log("photo ids: ", photoIds);
 
   const currentIndex = photoIds.indexOf(id);
   const nextPhotoId = photoIds[currentIndex + 1];
@@ -30,11 +31,12 @@ const PhotoShow = () => {
   }
 
   const uploadTime = photo.createdAt ? new Date(photo.createdAt).toLocaleString() : 'Unknown';
+  console.log('Current:', id, 'Prev:', prevPhotoId, 'Next:', nextPhotoId);
 
   return (
     <div>
       <div className="grey-area">
-        <button className="arrow-button left'" onClick={() => navigateToPhoto(prevPhotoId)}>Previous</button>
+        <button className="arrow-button left" onClick={() => navigateToPhoto(prevPhotoId)}>Previous</button>
         <img src={photo.photoUrl} alt="Photo description" />
         <button className="arrow-button right" onClick={() => navigateToPhoto(nextPhotoId)}>Next</button>
       </div>

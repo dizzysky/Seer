@@ -35,11 +35,10 @@ function Navigation({ className }) {
   if (sessionUser) {
     sessionLinks = (
       <div className="profile-button-container">
-        {/* Add the upload icon here */}
         <NavLink to="/upload"> 
-          <FontAwesomeIcon icon={faUpload} /> 
+          <FontAwesomeIcon icon={faUpload} className='upload-icon' /> 
         </NavLink>
-        <ProfileButton user={sessionUser} />
+        <ProfileButton user={sessionUser} className='profile-icon' />
       </div>
     );
   } else {

@@ -34,10 +34,6 @@ const PhotoUpload = () => {
 
   return (
     <div className="photo-upload-container">
-      <div style={{ width: '300px', height: '300px', backgroundColor: 'lightgray' }}>
-        <p>I DARE YOU</p>
-      </div>
-
     <form onSubmit={handleSubmit}>
       <label htmlFor="caption">Caption</label>
       <input type="text" id="caption" value={caption} onChange={handleCaption} required />

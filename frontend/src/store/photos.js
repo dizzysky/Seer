@@ -3,6 +3,7 @@ import csrfFetch from "./csrf";
 const LOAD_PHOTOS = 'photos/LOAD_PHOTOS';
 const RECEIVE_PHOTO = 'photos/RECEIVE_PHOTO';
 const UPLOAD_PHOTO = 'photos/UPLOAD_PHOTO';
+const DELETE_PHOTO = 'photos/DELETE_PHOTO';
 
 export const loadPhotos = (photos) => ({
     type: LOAD_PHOTOS,
@@ -23,6 +24,12 @@ export const uploadPhoto = (photo) => ({
 export const getPhoto = (photoId) => (state) => {
     return state.photos.photoId ? state.photos.photoId : [];
 }
+
+
+export const deletePhoto = (photoId) => ({
+  type: DELETE_PHOTO, 
+  photoId,
+})
 
 // Inside your Redux actions file
 export const createPhoto = (formData) => async (dispatch) => {
@@ -58,14 +65,12 @@ export const createPhoto = (formData) => async (dispatch) => {
 export const fetchPhotos = () => async dispatch => {
     const res = await csrfFetch('/api/photos');
     const data = await res.json();
-    console.log("Fetched PHOTOSSSSS:", data);
     dispatch(loadPhotos(data));
 };
 
 export const fetchPhoto = (id) => async dispatch => {
     const res = await csrfFetch(`/api/photos/${id}`);
     const data = await res.json();
-    console.log("Fetched PHOTO:", data);
     dispatch(receivePhoto(data));
 }
 
@@ -78,6 +83,10 @@ const photosReducer = (state = {}, action) => {
             return { ...state, [action.photo.id]: action.photo };
         case UPLOAD_PHOTO: 
             return { ...state, [action.photo.id]: action.photo };
+        case DELETE_PHOTO: 
+          const newState = { ...state }; 
+          delete newState[action.photoId]; 
+          return newState;
         default: 
             return state;
     }

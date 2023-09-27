@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPhoto } from '../../store/photos';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 import './PhotoShow.css';
 
 const PhotoShow = () => {
@@ -36,12 +39,16 @@ const PhotoShow = () => {
   return (
     <div>
       <div className="grey-area">
-        <button className="arrow-button left" onClick={() => navigateToPhoto(prevPhotoId)}>Previous</button>
+        <button className="arrow-button left" onClick={() => navigateToPhoto(prevPhotoId)}>
+          <FontAwesomeIcon icon={faChevronLeft} className="arrow-icon" />
+        </button>
         <img src={photo.photoUrl} alt="description" />
-        <button className="arrow-button right" onClick={() => navigateToPhoto(nextPhotoId)}>Next</button>
+        <button className="arrow-button right" onClick={() => navigateToPhoto(nextPhotoId)}>
+          <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" />
+        </button>
       </div>
       <div className="photo-details">
-        <p style={{fontSize: "20px"}}>{photo.caption}</p>
+        <p style={{ fontSize: "20px" }}>{photo.caption}</p>
         <p>Uploaded by: {photo.username || 'Loading...'}</p>
         <p>Uploaded at: {uploadTime}</p>
       </div>

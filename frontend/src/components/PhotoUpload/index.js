@@ -22,10 +22,6 @@ const PhotoUpload = () => {
     const formData = new FormData();
     formData.append('photo[photo]', photoFile);
     formData.append('photo[caption]', caption);
-
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]); 
-    }
     
 
     dispatch(createPhoto(formData));

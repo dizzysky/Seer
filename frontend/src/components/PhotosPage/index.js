@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import './PhotosPage.css'; 
 
 const PhotosPage = () => {
-  console.log('bruh');
+
   const dispatch = useDispatch();
   const photos = useSelector(state => Object.values(state.photos), shallowEqual);
 
@@ -15,7 +15,7 @@ const PhotosPage = () => {
   }, [dispatch]);
 
 
-  console.log("Rendered photos: ", photos); 
+
 
   return (
     <div className="photos-page-container"> 

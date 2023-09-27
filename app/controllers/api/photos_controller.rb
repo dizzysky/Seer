@@ -43,11 +43,16 @@ class Api::PhotosController < ApplicationController
     end
 
 
-    def destroy 
-        @photo = Photo.find(params[:id])
-        @photo.destroy
 
+    def destroy
+        @photo = Photo.find(params[:id])
+        if @photo.destroy
+        render json: { id: params[:id], message: 'Photo deleted successfully' }
+        else
+        render json: { errors: @photo.errors.full_messages }, status: :unprocessable_entity
+        end
     end
+  
 
     private
 

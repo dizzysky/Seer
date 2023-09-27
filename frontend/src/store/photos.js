@@ -31,7 +31,7 @@ export const deletePhoto = (photoId) => ({
   photoId,
 })
 
-// Inside your Redux actions file
+
 export const createPhoto = (formData) => async (dispatch) => {
     try {
       const res = await csrfFetch('http://localhost:3000/api/photos', {
@@ -73,6 +73,24 @@ export const fetchPhoto = (id) => async dispatch => {
     const data = await res.json();
     dispatch(receivePhoto(data));
 }
+
+
+export const removePhoto = (photoId) => async dispatch => {
+  console.log(`Attempting to delete photo with id: ${photoId}`);
+  const res = await csrfFetch(`/api/photos/${photoId}`, {
+    method: 'DELETE',
+  });
+  console.log('Delete response:', res);
+  if (res.ok) {
+    const data = await res.json();
+    if (data.id) {
+      dispatch(deletePhoto(data.id));
+    }
+  } else {
+    // error handling
+  }
+};
+
 
 
 const photosReducer = (state = {}, action) => {

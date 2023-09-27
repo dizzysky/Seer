@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPhoto } from '../../store/photos';
+import { fetchPhoto, removePhoto } from '../../store/photos';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { deletePhoto } from '../../store/photos';
@@ -36,19 +36,13 @@ const PhotoShow = () => {
 
   const handleDelete = async () => {
     try {
-      const result = await dispatch(deletePhoto(photo.id));
-      console.log('Delete Result:', result);
+      const result = await dispatch(removePhoto(photo.id));
       history.push('/photos')
     } catch (error) {
-      console.error('Delete error: ', error);
     }
   };
 
   const uploadTime = photo.createdAt ? new Date(photo.createdAt).toLocaleString() : 'Unknown';
-
-
-  console.log('Session User:', sessionUser);
-  console.log('Photo:', photo);
 
   return (
     <div>

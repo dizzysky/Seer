@@ -93,15 +93,17 @@ const PhotoShow = () => {
           </p>
         )}
         <p>Uploaded by: {photo.username || 'Loading...'}</p>
-        <p>Uploaded at: {uploadTime}</p>
+        <p>Uploaded on {uploadTime}</p>
         {sessionUser && sessionUser.id === photo.uploaderId && (
           <button onClick={handleDelete} className="delete-button">
             Delete Photo
           </button>
         )}
       </div>
+      <div className="comments-section"> {/* New wrapper */}
       <CommentList photoId={id}/>
-      <CommentForm photoId={id}/>
+      <CommentForm photoId={id} style={{ marginBottom: '200px' }} />
+      </div>
     </div>
   );
 };

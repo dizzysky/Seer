@@ -26,6 +26,7 @@ html, body {
   /* Your content should grow to take available space */
   .content {
     flex-grow: 1;
+    padding-bottom: 70px;
     /* margin-top: 64px; */
   }
   

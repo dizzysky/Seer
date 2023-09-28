@@ -15,9 +15,19 @@
   }
   
   .photo-details {
+
+    max-width: 800px;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .comments-section {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .arrow-button {
@@ -42,8 +52,8 @@
     font-size: 24px;
   }
   
-
+/* 
 
   div {
     border: 1px solid black;
-  }
+  } */

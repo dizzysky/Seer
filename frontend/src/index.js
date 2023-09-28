@@ -8,7 +8,7 @@ import App from './App';
 import configureStore from './store';
 import csrfFetch, { restoreCSRF } from './store/csrf';
 import * as sessionActions from './store/session';
-
+import 'font-awesome/css/font-awesome.min.css';
 function Root() {
   return (
     <Provider store={store}>

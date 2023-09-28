@@ -1,10 +1,12 @@
 class Api::CommentsController < ApplicationController
     before_action :require_logged_in
   
+    # comments_controller.rb
     def index
-      @comments = Comment.where(photo_id: params[:photo_id])
+      @comments = Comment.includes(:author).where(photo_id: params[:photo_id])
       render :index
     end
+
   
     def create
       @comment = Comment.new(comment_params)

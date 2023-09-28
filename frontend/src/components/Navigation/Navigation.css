@@ -127,21 +127,9 @@ button.nav-link {
 
 
 .upload-icon {
-  font-size: 20px; /* Adjust the icon size as needed */
-  color: white; /* Set the icon color */
-  margin-right: 10px; /* Add some spacing to the right of the icon */
+  font-size: 20px; 
+  color: white; 
+  margin-right: 10px;
 }
-
-
-
-div.profile-icon .svg-inline--fa {
-  font-size: 20px; /* Adjust the icon size as needed */
-  color: white; /* Set the icon color */
-  margin-left: 20px; /* Add some spacing to the right of the icon */
-}
-
-
-
-
 
 

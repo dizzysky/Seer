@@ -1,8 +1,7 @@
-// CommentForm.js (Component for adding comments)
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postComment } from '../../store/comments';
+import './CommentForm.css';
 
 const CommentForm = ({ photoId }) => {
   const [commentText, setCommentText] = useState('');
@@ -19,7 +18,7 @@ const CommentForm = ({ photoId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="comment-form" onSubmit={handleSubmit}>
       <textarea
         value={commentText}
         onChange={(e) => setCommentText(e.target.value)}

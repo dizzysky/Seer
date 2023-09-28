@@ -44,7 +44,7 @@ const PhotoUpload = () => {
     <div className="photo-upload-container">
       <form className="upload-form" onSubmit={handleSubmit}>
         {/* <label htmlFor="caption" className="caption-label">Caption</label> */}
-        <input type="text" id="caption" placeholder="Enter caption here" value={caption} onChange={handleCaption} required />
+        <input type="text" id="caption" placeholder="enter caption" value={caption} onChange={handleCaption} required />
 
         <input type="file" className="file-input" onChange={handleFile} required />
 

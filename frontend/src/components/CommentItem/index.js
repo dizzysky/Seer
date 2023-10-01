@@ -15,7 +15,8 @@ const CommentItem = ({ comment }) => {
 
   return (
     <div className="comment-item">
-       <strong>{comment.author_username ? comment.author_username : "user"}</strong>: {comment.body}
+       {/* <strong>{comment.author_username ? comment.author_username : "user"}</strong>: {comment.body} */}
+       <p>{comment.body}</p>
       <button onClick={handleDelete}>
       <i class="fa-solid fa-trash"></i>
       </button>

@@ -1,36 +1,37 @@
 /* TODO Add site wide styles */
 
-
 body {
-    font-family: 'Kanit', sans-serif;
+    font-family: "Kanit", sans-serif;
     font-weight: 300;
     /* margin-top: 64px; */
 }
 
-
-
-
 /* Ensure the page takes full height */
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
-  }
-  
-  /* Your App's main container should stretch and push the footer down */
-  .main-container {
-    min-height: 100vh;
+}
+
+/* Your App's main container should stretch and push the footer down */
+.main-container {
+    height: 100vh;
+    /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
-  }
-  
-  /* Your content should grow to take available space */
-  .content {
+}
+
+/* Your content should grow to take available space */
+.content {
     flex-grow: 1;
     padding-bottom: 70px;
     /* margin-top: 64px; */
-  }
-  
-  /* Footer will take its natural height and not more */
-  .footer {
+}
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Footer will take its natural height and not more */
+.footer {
     flex-shrink: 0;
-  }
+}

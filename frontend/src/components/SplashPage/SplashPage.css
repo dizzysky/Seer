@@ -3,26 +3,24 @@
     width: 100%;
     background-size: cover;
     background-position: center;
-    transition: background-image 1s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .splash-text {
+}
+
+.splash-text {
     text-align: center;
     color: white;
-  }
-  
-  .splash-text h1 {
+}
+
+.splash-text h1 {
     color: white;
-    font-family: 'Kanit', 'sans-serif';
+    font-family: "Kanit", "sans-serif";
     font-size: 4em;
     margin-bottom: 0.5em;
-  }
-  
-  .splash-text p {
-    font-family: 'Kanit';
+}
+
+.splash-text p {
+    font-family: "Kanit";
     font-size: 1.5em;
-  }
-  
+}

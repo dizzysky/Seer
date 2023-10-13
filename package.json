@@ -2,7 +2,6 @@
   "name": "seer",
   "version": "1.0.0",
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
-  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
@@ -16,7 +15,7 @@
   "keywords": [],
   "author": "",
   "engines": {
-    "node": "16.20.0"
+    "node": "18.18.0"
   },
   "license": "ISC",
   "bugs": {
@@ -28,5 +27,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "font-awesome": "^4.7.0"
-  }
+  },
+  "devDependencies": {}
 }

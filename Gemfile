@@ -1,7 +1,11 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+
 ruby "3.1.1"
+
+gem "faker"
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7"
@@ -44,7 +48,6 @@ gem "aws-sdk-s3"
 gem 'bcrypt'
 gem 'jbuilder'
 
-gem "faker"
 
 group :development, :test do
   gem "byebug", platforms: %i[ mri mingw x64_mingw ]

@@ -31,6 +31,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+seer-admin_accessKeys.csv
+
 
 
 /public

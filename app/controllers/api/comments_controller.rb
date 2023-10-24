@@ -19,18 +19,38 @@ class Api::CommentsController < ApplicationController
         render json: @comment.errors.full_messages, status: 422
       end
     end
-  
-    def destroy
-        @comment = Comment.find(params[:id])
 
-        if @comment.author_id == current_user.id
-            @comment.destroy
-            render :show
-        else
-            render json: ['You do not have permission to delete this comment'], status: 403
-        end
+
+    def update
+      @comment = Comment.find(params[:id])
+
+      if @comment.update(comment_params)
+        render :show
+      else
+        render json: @comment.errors.full_messages, status: 422 # Unprocessable Entity
+      end
     end
 
+  
+    def destroy
+      @comment = Comment.find_by(id: params[:id])
+  
+      if @comment.nil?
+          render json: ['Comment not found'], status: 404
+          return
+      end
+  
+      if @comment.author_id == current_user.id
+          if @comment.destroy
+              render :show
+          else
+              render json: @comment.errors.full_messages, status: 422 # Unprocessable Entity
+          end
+      else
+          render json: ['You do not have permission to delete this comment'], status: 403
+      end
+  end
+  
     private
     def comment_params
         params.require(:comment).permit(:body)

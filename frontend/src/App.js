@@ -9,6 +9,7 @@ import PhotosPage from "./components/PhotosPage";
 import PhotoShow from "./components/PhotoShow";
 import Footer from "./components/Footer";
 import PhotoUpload from "./components/PhotoUpload";
+import Albums from "./store/albums";
 
 function App() {
     const location = useLocation();
@@ -40,6 +41,7 @@ function App() {
                     <Route path="/upload">
                         <PhotoUpload />
                     </Route>
+                    <Route path="/albums" exact component={Albums} />
                 </Switch>
             </div>
             {currentPath !== "/login" && currentPath !== "/signup" && (

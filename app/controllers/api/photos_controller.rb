@@ -5,6 +5,7 @@ class Api::PhotosController < ApplicationController
     end
 
     def show 
+        Rails.logger.info "Params: #{params.inspect}"
         @photo = Photo.find(params[:id])
         render :show
     end

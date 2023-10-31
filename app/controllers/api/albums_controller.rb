@@ -1,8 +1,7 @@
 class Api::AlbumsController < ApplicationController 
 
     def index 
-        @user = User.find(params[:user_id])
-        @albums = @user.albums 
+        @albums = current_user.albums
         render :index
     end
 

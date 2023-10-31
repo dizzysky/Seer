@@ -9,7 +9,7 @@ import PhotosPage from "./components/PhotosPage";
 import PhotoShow from "./components/PhotoShow";
 import Footer from "./components/Footer";
 import PhotoUpload from "./components/PhotoUpload";
-import Albums from "./store/albums";
+import Albums from "./components/AlbumList";
 
 function App() {
     const location = useLocation();

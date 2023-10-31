@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAlbums, createAlbum, removeAlbum } from "../../store/albums";
 
 const Albums = () => {
-    console.log("component mounted");
     const dispatch = useDispatch();
-    const albums = useSelector((state) => Object.values(state.albums)); // assuming albums are stored as an object with IDs as keys
+    const albums = useSelector((state) =>
+        state.albums ? Object.values(state.albums) : []
+    );
 
     useEffect(() => {
         dispatch(fetchAlbums());
-        console.log("Albums from Redux store: ", albums);
     }, [dispatch]);
 
     const handleCreateAlbum = () => {
@@ -26,7 +26,7 @@ const Albums = () => {
 
     return (
         <div>
-            <h2>My Albums</h2>
+            <h2 className="album-page-header">My Albums</h2>
             <button onClick={handleCreateAlbum}>Create New Album</button>
             <ul>
                 {albums.map((album) => (
@@ -35,7 +35,6 @@ const Albums = () => {
                         <button onClick={() => handleDeleteAlbum(album.id)}>
                             Delete
                         </button>
-                        {/* You can add more buttons/functions like viewing or editing the album */}
                     </li>
                 ))}
             </ul>

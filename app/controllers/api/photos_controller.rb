@@ -12,16 +12,18 @@ class Api::PhotosController < ApplicationController
 
 
 
-def create
-    @photo = Photo.new(photo_params)
-    @photo.uploader_id = current_user.id
-    
-    if @photo.save
-      render json: { id: @photo.id }, status: :created
-    else
-      render json: @photo.errors, status: :unprocessable_entity
+    def create
+        @photo = Photo.new(photo_params)
+        @photo.uploader_id = current_user.id
+        
+        if @photo.save
+        render json: { id: @photo.id }, status: :created
+        else
+        render json: @photo.errors, status: :unprocessable_entity
+        end
+
+        @photo.tag_ids = params[:tag_ids] if params[:tag_ids]
     end
-  end
   
 
 
@@ -37,6 +39,7 @@ def create
         else
             render json: @photo.errors.full_messages, status: 422
         end
+        @photo.tag_ids = params[:tag_ids] if params[:tag_ids]
     end
 
 
@@ -54,7 +57,7 @@ def create
     private
 
     def photo_params 
-        params.require(:photo).permit(:photo, :caption, :uploader_id, :album_id) 
+        params.require(:photo).permit(:photo, :caption, :uploader_id, :album_id, tag_ids: []) 
     end
 
 end

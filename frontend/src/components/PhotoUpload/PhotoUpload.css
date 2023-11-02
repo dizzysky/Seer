@@ -1,60 +1,70 @@
 .photo-upload-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    background-color: #f0f0f0;
 }
 
 .upload-form {
-  background-color: #fff;
-  padding: 40px;
-  width: 60%;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
+    background-color: #fff;
+    padding: 40px;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 
-.caption-label, .caption-input, .file-input, .upload-button {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
+.caption-label,
+.caption-input,
+.file-input,
+.upload-button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
 }
 
 #caption {
-  width: 100%;
-  height: 60px;  /* Adjust the height as you like */
-  padding: 10px; /* Add some padding */
-  border: 1px solid #ccc;
-  border-radius: 4px;
+    width: 100%;
+    height: 60px; /* Adjust the height as you like */
+    padding: 10px; /* Add some padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#tags {
+    width: 100%;
+    height: 40px;
+    padding: 10px; /* Add some padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 15px;
 }
 
-
-.caption-input, .file-input {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.caption-input,
+.file-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .upload-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 4px;
-  width: 100%;
-  font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 18px;
 }
 
 .upload-button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
-
 #caption::placeholder {
-  font-size: 18px;  /* Adjust to the size you prefer */
+    font-size: 18px; /* Adjust to the size you prefer */
 }

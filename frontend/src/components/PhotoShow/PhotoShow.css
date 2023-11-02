@@ -6,16 +6,15 @@
     align-items: center;
     overflow: hidden;
     position: relative; /* Add position: relative */
-  }
-  
-  .grey-area img {
+}
+
+.grey-area img {
     max-width: 80%;
     max-height: 80vh;
     object-fit: contain;
-  }
-  
-  .photo-details {
+}
 
+.photo-details {
     max-width: 800px;
     margin: 0 auto;
     margin-left: auto;
@@ -23,40 +22,75 @@
     padding-top: 10px;
     padding-bottom: 15px;
     border-bottom: 1px solid #ccc;
-  }
+}
 
-  .comments-section {
+.comments-section {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
     margin-left: auto;
     margin-right: auto;
-  }
-  
-  .arrow-button {
+}
+
+.arrow-button {
     background: none;
     border: none;
     cursor: pointer;
     position: absolute; /* Change position to absolute */
     top: 50%;
     transform: translateY(-50%);
-  }
-  
-  .arrow-button.left {
+}
+
+.arrow-button.left {
     left: 20px;
-  }
-  
-  .arrow-button.right {
+}
+
+.arrow-button.right {
     right: 20px;
-  }
-  
-  .arrow-icon {
+}
+
+.arrow-icon {
     color: #ccc;
     font-size: 24px;
-  }
-  
-/* 
+}
+.photo-tags {
+    margin-top: 10px;
+    font-size: 11px;
+}
+.photo-tag {
+    padding: 2px 5px; /* Small padding around the text */
+    margin-right: 8px; /* Space between tags */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Indicates it's clickable */
+    background-color: #f5f5f5; /* Light gray background */
+    transition: background-color 0.3s; /* Smooth color transition */
+}
 
-  div {
-    border: 1px solid black;
-  } */
+.photo-tag:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 150px;
+    z-index: 1000; /* Make sure the dropdown appears above other content */
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu > div {
+    padding: 8px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu > div:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu > div:hover {
+    background-color: #f5f5f5;
+}

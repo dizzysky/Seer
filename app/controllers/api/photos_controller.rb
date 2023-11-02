@@ -5,25 +5,32 @@ class Api::PhotosController < ApplicationController
     end
 
     def show 
-        Rails.logger.info "Params: #{params.inspect}"
-        @photo = Photo.find(params[:id])
+        Rails.logger.info "PARAAAMS: #{params.inspect}"
+        @photo = Photo.includes(:tags).find(params[:id])
         render :show
     end
 
 
 
     def create
-        @photo = Photo.new(photo_params)
-        @photo.uploader_id = current_user.id
-        
-        if @photo.save
-        render json: { id: @photo.id }, status: :created
-        else
-        render json: @photo.errors, status: :unprocessable_entity
+      @photo = Photo.new(photo_params.except(:tag_ids))
+      @photo.uploader_id = current_user.id
+    
+      if @photo.save
+        if params[:tag_ids]
+          # Assuming params[:tag_ids] is a string of comma-separated tag names
+          tag_names = params[:tag_ids].split(',')
+          tag_names.each do |name|
+            tag = Tag.find_or_create_by(name: name.strip)
+            @photo.tags << tag
+          end
         end
-
-        @photo.tag_ids = params[:tag_ids] if params[:tag_ids]
+        render json: { id: @photo.id }, status: :created
+      else
+        render json: @photo.errors, status: :unprocessable_entity
+      end
     end
+    
   
 
 
@@ -33,14 +40,14 @@ class Api::PhotosController < ApplicationController
 
     def update
         @photo = Photo.find(params[:id])
-
+      
         if @photo.update(photo_params)
-            render json: @photo
+          @photo.tag_ids = params[:tag_ids] if params[:tag_ids]
+          render json: @photo
         else
-            render json: @photo.errors.full_messages, status: 422
+          render json: @photo.errors.full_messages, status: 422
         end
-        @photo.tag_ids = params[:tag_ids] if params[:tag_ids]
-    end
+      end
 
 
 

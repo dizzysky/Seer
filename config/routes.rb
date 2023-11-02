@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :albums do 
       resources :photos, only: [:index, :create, :destroy, :show]
     end
+
+    resources :tags
   end
 
   get 'photos/show_html/:id', to: 'photos#show_html', as: 'photo_show_html'

@@ -10,6 +10,7 @@ import PhotoShow from "./components/PhotoShow";
 import Footer from "./components/Footer";
 import PhotoUpload from "./components/PhotoUpload";
 import Albums from "./components/AlbumList";
+import TagShow from "./components/TagShow";
 
 function App() {
     const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
                         <PhotoUpload />
                     </Route>
                     <Route path="/albums" exact component={Albums} />
+                    <Route path="/tags/:tagId" component={TagShow} />
                 </Switch>
             </div>
             {currentPath !== "/login" && currentPath !== "/signup" && (

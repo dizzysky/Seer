@@ -17,6 +17,41 @@ export const removeTag = (tagId) => ({
     payload: tagId,
 });
 
+export const addTagToPhoto = (photoId, tagName) => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/photos/${photoId}/tags`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name: tagName }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        const tag = await response.json();
+        dispatch(addTag(tag));
+    } catch (error) {
+        console.error("Error adding tag:", error);
+    }
+};
+
+export const removeTagFromPhoto = (photoId, tagId) => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/photos/${photoId}/tags/${tagId}`, {
+            method: "DELETE",
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        dispatch(removeTag(tagId));
+    } catch (error) {
+        console.error("Error removing tag:", error);
+    }
+};
+
 export const fetchTags = () => async (dispatch) => {
     try {
         const response = await fetch("/api/tags");

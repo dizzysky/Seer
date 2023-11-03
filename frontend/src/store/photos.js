@@ -4,6 +4,7 @@ const LOAD_PHOTOS = "photos/LOAD_PHOTOS";
 const RECEIVE_PHOTO = "photos/RECEIVE_PHOTO";
 const UPLOAD_PHOTO = "photos/UPLOAD_PHOTO";
 const DELETE_PHOTO = "photos/DELETE_PHOTO";
+const UPDATE_PHOTO_TAGS = "photos/UPDATE_PHOTO_TAGS";
 
 export const loadPhotos = (photos) => ({
     type: LOAD_PHOTOS,
@@ -90,6 +91,31 @@ export const updatePhotoCaption = (photoId, newCaption) => async (dispatch) => {
     }
 };
 
+// In your photo actions file
+export const updatePhotoTags = (photoId, tags) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/photos/${photoId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ tag_names: tags }), // Your backend endpoint needs to handle this format
+        });
+
+        if (response.ok) {
+            const updatedPhoto = await response.json();
+            dispatch({
+                type: "UPDATE_PHOTO_TAGS",
+                payload: updatedPhoto,
+            });
+        } else {
+            throw new Error("Failed to update tags.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 const photosReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_PHOTOS:
@@ -102,6 +128,15 @@ const photosReducer = (state = {}, action) => {
             const newState = { ...state };
             delete newState[action.photoId];
             return newState;
+        case UPDATE_PHOTO_TAGS:
+            const updatedPhotoId = action.payload.id;
+            return {
+                ...state,
+                [updatedPhotoId]: {
+                    ...state[updatedPhotoId],
+                    tags: action.payload.tags, // Make sure the payload contains the updated tags array
+                },
+            };
         default:
             return state;
     }

@@ -5,6 +5,7 @@ import {
     fetchPhoto,
     removePhoto,
     updatePhotoCaption,
+    updatePhotoTags,
 } from "../../store/photos";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -29,7 +30,9 @@ const PhotoShow = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [newCaption, setNewCaption] = useState("");
     const [showMenu, setShowMenu] = useState(false);
-
+    const [editableTags, setEditableTags] = useState([]);
+    const [isEditingTags, setIsEditingTags] = useState(false);
+    const [newTag, setNewTag] = useState("");
     const currentIndex = photoIds.indexOf(id);
     const nextPhotoId = photoIds[currentIndex + 1];
     const prevPhotoId = photoIds[currentIndex - 1];
@@ -40,6 +43,13 @@ const PhotoShow = () => {
 
     useEffect(() => {
         if (photo) {
+            setNewCaption(photo.caption);
+        }
+    }, [photo]);
+
+    useEffect(() => {
+        if (photo && photo.tags) {
+            setEditableTags(photo.tags.map((tag) => tag.name));
             setNewCaption(photo.caption);
         }
     }, [photo]);
@@ -70,7 +80,54 @@ const PhotoShow = () => {
     };
 
     const editTags = () => {
-        // Logic to handle tag editing
+        setIsEditingTags(true);
+    };
+
+    const addTag = () => {
+        if (newTag) {
+            const updatedTags = [...editableTags, newTag];
+            setEditableTags([...editableTags, newTag]);
+            setNewTag("");
+        }
+    };
+
+    const removeTag = (index) => {
+        const tagsCopy = [...editableTags];
+        tagsCopy.splice(index, 1);
+        setEditableTags(tagsCopy);
+    };
+
+    const saveTags = async () => {
+        try {
+            const tagIds = await resolveTagNamesToIds(editableTags);
+            console.log("Tag IDs to be saved:", tagIds);
+            await dispatch(updatePhotoTags(photo.id, tagIds));
+            setIsEditingTags(false);
+        } catch (error) {
+            console.error("Failed to save tags:", error);
+        }
+    };
+
+    // Resolve tag names to IDs before sending to backend
+    const resolveTagNamesToIds = async (tagNames) => {
+        const responses = await Promise.all(
+            tagNames.map((name) =>
+                fetch(`/api/tags?name=${encodeURIComponent(name)}`)
+            )
+        );
+
+        const tagsArrays = await Promise.all(
+            responses.map((res) => res.json())
+        );
+
+        // Here we make sure that 'name' is passed correctly to the find function
+        const tags = tagsArrays.map((tagsArray, index) =>
+            tagsArray.find((tag) => tag.name === tagNames[index])
+        );
+
+        console.log("Filtered tags:", tags);
+
+        return tags.map((tag) => (tag ? tag.id : undefined)); // Ensure that we handle the case where the tag might not be found
     };
 
     const handleSubmit = async () => {
@@ -130,17 +187,39 @@ const PhotoShow = () => {
                     </button>
                 )} */}
                 <div className="photo-tags">
-                    {photo.tags &&
+                    {isEditingTags ? (
+                        <>
+                            {editableTags.map((tag, index) => (
+                                <span key={index} className="editable-tag">
+                                    {tag}
+                                    <span onClick={() => removeTag(tag.id)}>
+                                        {" "}
+                                        x{" "}
+                                    </span>
+                                </span>
+                            ))}
+                            <input
+                                value={newTag}
+                                onChange={(e) => setNewTag(e.target.value)}
+                                placeholder="Add a tag..."
+                            />
+                            <button onClick={addTag}>Add Tag</button>
+                            <button onClick={saveTags}>Save Tags</button>
+                        </>
+                    ) : (
+                        photo.tags &&
                         photo.tags.map((tag) => (
                             <span
                                 key={tag.id}
                                 className="photo-tag"
-                                onClick={() => history.push(`/tags/${tag.id}`)} // Navigate to tag-specific page
+                                onClick={() => history.push(`/tags/${tag.id}`)}
                             >
                                 {tag.name}
                             </span>
-                        ))}
+                        ))
+                    )}
                 </div>
+
                 {sessionUser && sessionUser.id === photo.uploaderId && (
                     <>
                         <FontAwesomeIcon

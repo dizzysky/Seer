@@ -14,6 +14,12 @@ class Api::TagsController < ApplicationController
         end
     end
 
+    def show
+        @tag = Tag.find(params[:id])
+        @photos = @tag.photos # Assuming there's a has_many association set up
+        render :show
+    end
+
     private 
 
     def tag_params

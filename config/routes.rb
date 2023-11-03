@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     
     resources :photos, only: [:show, :index, :create, :edit, :update, :destroy] do
       resources :comments, only: [:create, :index, :destroy, :update]
+      delete 'tags/:tag_id', to: 'photos#remove_tag' 
+      post 'add_tag', on: :member
     end
     
     # Nested photo resources under albums

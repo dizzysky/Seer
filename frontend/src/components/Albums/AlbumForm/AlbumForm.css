@@ -1,0 +1,29 @@
+.album-grid-container {
+    margin-top: 280px;
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: center;
+}
+
+.album-grid {
+    column-count: 4;
+    column-gap: 5px;
+    margin: 0 auto;
+    width: 60%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.photo {
+    transition: filter 0.3s;
+    /* Assuming you have some sort of default settings for your photos */
+}
+
+.photo:not(.selected) {
+    filter: grayscale(100%); /* Grey out the non-selected photos */
+}
+
+.photo.selected {
+    border: 10px solid blue; /* Blue border for selected photos */
+    filter: none; /* Remove grey filter for selected photos */
+}

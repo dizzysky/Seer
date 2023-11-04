@@ -9,10 +9,13 @@ Rails.application.routes.draw do
       post 'add_tag', on: :member
     end
     
-    # Nested photo resources under albums
-    resources :albums do 
-      resources :photos, only: [:index, :create, :destroy, :show]
-    end
+
+    # resources :albums do 
+    #   resources :photos, only: [:index, :create, :destroy, :show]
+    # end
+
+    resources :albums, only: [:index, :show, :create, :update, :destroy]
+
 
     resources :tags
   end

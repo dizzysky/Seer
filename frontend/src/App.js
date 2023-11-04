@@ -9,8 +9,9 @@ import PhotosPage from "./components/PhotosPage";
 import PhotoShow from "./components/PhotoShow";
 import Footer from "./components/Footer";
 import PhotoUpload from "./components/PhotoUpload";
-import Albums from "./components/AlbumList";
+import Albums from "./components/Albums/AlbumList";
 import TagShow from "./components/TagShow";
+import AlbumForm from "./components/Albums/AlbumForm";
 
 function App() {
     const location = useLocation();
@@ -43,6 +44,7 @@ function App() {
                         <PhotoUpload />
                     </Route>
                     <Route path="/albums" exact component={Albums} />
+                    <Route path="/albums/new" exact component={AlbumForm} />
                     <Route path="/tags/:tagId" component={TagShow} />
                 </Switch>
             </div>

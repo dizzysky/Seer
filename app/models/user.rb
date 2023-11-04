@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :photos, foreign_key: 'uploader_id', dependent: :destroy
   has_many :comments, foreign_key: 'author_id'
 
+  has_many :albums, dependent: :destroy
+
 
   validates :username, 
     uniqueness: true, 

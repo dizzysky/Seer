@@ -10,7 +10,7 @@ export const createAlbum =
 
         try {
             const formData = new FormData();
-            formData.append("album[name]", title);
+            formData.append("album[title]", title);
             formData.append("album[description]", description);
             photoIds.forEach((id) => {
                 formData.append("album[photo_ids][]", id);

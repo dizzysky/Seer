@@ -27,3 +27,7 @@
     border: 10px solid blue; /* Blue border for selected photos */
     filter: none; /* Remove grey filter for selected photos */
 }
+
+.album-form {
+    margin-top: 100px;
+}

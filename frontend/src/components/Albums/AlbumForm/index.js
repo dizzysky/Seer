@@ -37,43 +37,58 @@ const AlbumForm = ({ onAlbumCreated }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const albumData = {
-            album: {
-                title: title,
-                description: description,
-                photo_ids: selectedPhotoIds, // Include selected photo IDs
-            },
-        };
-
         dispatch(createAlbum(title, description, selectedPhotoIds));
+        // Consider waiting for a success action before redirecting or handle it in a then() block if your action returns a promise
         history.push("/albums");
-        // Rest of the submit logic...
     };
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                {/* Title, Description inputs and submit button */}
-            </form>
-            <div className="album-grid-container">
-                {/* {console.log("USER PHOTOS:", userPhotos)} */}
-                <div className="album-grid">
-                    {userPhotos.map((photo) => (
-                        <div
-                            key={photo.id}
-                            className={`photo ${
-                                selectedPhotoIds.includes(photo.id)
-                                    ? "selected"
-                                    : ""
-                            }`}
-                            onClick={() => togglePhotoSelection(photo.id)}
-                        >
-                            <PhotoItem key={photo.id} photo={photo} />
-                        </div>
-                    ))}
+            <form onSubmit={handleSubmit} className="album-form">
+                <div className="form-group">
+                    <label htmlFor="album-title">Album Title</label>
+                    <input
+                        id="album-title"
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                        placeholder="Enter album title"
+                    />
                 </div>
-            </div>
+                <div className="form-group">
+                    <label htmlFor="album-description">Album Description</label>
+                    <textarea
+                        id="album-description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                        placeholder="Enter album description"
+                    />
+                </div>
+                <div className="photo-selection-prompt">
+                    <p>Select photos to add to the album:</p>
+                    <div className="album-grid">
+                        {userPhotos.map((photo) => (
+                            <div
+                                key={photo.id}
+                                className={`photo ${
+                                    selectedPhotoIds.includes(photo.id)
+                                        ? "selected"
+                                        : ""
+                                }`}
+                                onClick={() => togglePhotoSelection(photo.id)}
+                                tabIndex="0" // Make it accessible
+                            >
+                                <PhotoItem photo={photo} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <button type="submit" className="create-album-btn">
+                    Create Album
+                </button>
+            </form>
         </>
     );
 };

@@ -1,22 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import csrfFetch from "../../../store/csrf";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAlbum, fetchAlbums } from "../../../store/albums";
 import "./AlbumList.css";
 
 const AlbumsIndex = () => {
-    const [albums, setAlbums] = useState([]);
+    // const [albums, setAlbums] = useState([]);
+    const dispatch = useDispatch();
+    const albums = useSelector((state) => state.albums.albums);
+
+    // useEffect(() => {
+    //     csrfFetch("/api/albums")
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log(data);
+    //             setAlbums(data);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching albums:", error);
+    //         });
+    // }, []);
 
     useEffect(() => {
-        csrfFetch("/api/albums")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data); // Should log an empty array initially
-                setAlbums(data);
-            })
-            .catch((error) => {
-                console.error("Error fetching albums:", error);
-            });
-    }, []);
+        // Dispatch an action to fetch albums which will update the redux store
+        dispatch(fetchAlbums());
+    }, [dispatch]); // Add any other dependencies if necessary
+
+    const handleDelete = (albumId) => {
+        dispatch(deleteAlbum(albumId));
+    };
 
     return (
         <div className="albums-container">
@@ -26,7 +39,10 @@ const AlbumsIndex = () => {
                     <div key={album.id}>
                         <h2>{album.title}</h2>
                         <p>{album.description}</p>
-                        {/* Add more album details here */}
+                        <Link to={`/albums/${album.id}/edit`}>Edit</Link>
+                        <button onClick={() => handleDelete(album.id)}>
+                            Delete
+                        </button>
                     </div>
                 ))
             ) : (

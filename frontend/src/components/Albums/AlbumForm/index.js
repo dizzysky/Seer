@@ -3,6 +3,8 @@ import csrfFetch from "../../../store/csrf";
 import { useHistory } from "react-router-dom";
 import PhotoItem from "../../PhotoItem";
 import "./AlbumForm.css";
+import { useDispatch } from "react-redux";
+import { createAlbum } from "../../../store/albums";
 
 const AlbumForm = ({ onAlbumCreated }) => {
     const [title, setTitle] = useState("");
@@ -10,6 +12,7 @@ const AlbumForm = ({ onAlbumCreated }) => {
     const [userPhotos, setUserPhotos] = useState([]);
     const [selectedPhotoIds, setSelectedPhotoIds] = useState([]);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         // Fetch the user's photos when the component mounts
@@ -42,6 +45,8 @@ const AlbumForm = ({ onAlbumCreated }) => {
                 photo_ids: selectedPhotoIds, // Include selected photo IDs
             },
         };
+
+        dispatch(createAlbum(title, description, selectedPhotoIds));
         history.push("/albums");
         // Rest of the submit logic...
     };

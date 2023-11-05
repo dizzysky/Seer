@@ -1,105 +1,66 @@
-import csrfFetch from "./csrf";
+import csrfFetch from "../store/csrf";
 
-const LOAD_ALBUMS = "albums/LOAD_ALBUMS";
-const RECEIVE_ALBUM = "albums/RECEIVE_ALBUM";
-const UPLOAD_ALBUM = "albums/UPLOAD_ALBUM";
-const DELETE_ALBUM = "albums/DELETE_ALBUM";
+export const CREATE_ALBUM_START = "CREATE_ALBUM_START";
+export const CREATE_ALBUM_SUCCESS = "CREATE_ALBUM_SUCCESS";
+export const CREATE_ALBUM_FAILURE = "CREATE_ALBUM_FAILURE";
 
-export const loadAlbums = (albums) => ({
-    type: LOAD_ALBUMS,
-    payload: albums,
-});
+export const createAlbum =
+    (title, description, photoIds) => async (dispatch) => {
+        dispatch({ type: CREATE_ALBUM_START });
 
-export const receiveAlbum = (album) => ({
-    type: RECEIVE_ALBUM,
-    album,
-});
+        try {
+            const formData = new FormData();
+            formData.append("album[name]", title);
+            formData.append("album[description]", description);
+            photoIds.forEach((id) => {
+                formData.append("album[photo_ids][]", id);
+            });
 
-export const uploadAlbum = (album) => ({
-    type: UPLOAD_ALBUM,
-    album,
-});
+            const response = await csrfFetch("/api/albums", {
+                method: "POST",
+                body: formData,
+            });
 
-export const getAlbum = (albumId) => (state) => {
-    return state.albums.albumId ? state.album.albumId : [];
+            if (response.ok) {
+                const album = await response.json();
+                dispatch({
+                    type: CREATE_ALBUM_SUCCESS,
+                    payload: album,
+                });
+            } else {
+                const error = await response.json();
+                dispatch({
+                    type: CREATE_ALBUM_FAILURE,
+                    payload: error,
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: CREATE_ALBUM_FAILURE,
+                payload: error,
+            });
+        }
+    };
+
+const initialState = {
+    albums: [],
+    isCreating: false,
+    error: null,
 };
 
-export const deleteAlbum = (albumId) => ({
-    type: DELETE_ALBUM,
-    albumId,
-});
-
-export const createAlbum = (formData) => async (dispatch) => {
-    const res = await csrfFetch("/api/albums", {
-        method: "POST",
-        body: formData,
-    });
-
-    if (res.ok) {
-        const album = await res.json();
-        dispatch(uploadAlbum(album));
-        return album;
-    }
-};
-
-export const fetchAlbums = () => async (dispatch) => {
-    const res = await csrfFetch("/api/albums");
-
-    if (res.ok) {
-        const albums = await res.json();
-        dispatch(loadAlbums(albums));
-    }
-};
-
-export const fetchAlbum = (id) => async (dispatch) => {
-    const res = await csrfFetch(`/api/albums/${id}`);
-
-    if (res.ok) {
-        const album = await res.json();
-        dispatch(receiveAlbum(album));
-    }
-};
-
-export const removeAlbum = (albumId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/albums/${albumId}`, {
-        method: "DELETE",
-    });
-
-    if (res.ok) {
-        dispatch(deleteAlbum(albumId));
-    }
-};
-
-export const updateAlbumDetails = (albumId, details) => async (dispatch) => {
-    const res = await csrfFetch(`/api/albums/${albumId}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(details),
-    });
-
-    if (res.ok) {
-        const updatedAlbum = await res.json();
-        dispatch(receiveAlbum(updatedAlbum));
-    }
-};
-
-const albumsReducer = (state = {}, action) => {
+export const albumReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOAD_ALBUMS:
-            return { ...state, ...action.payload };
-        case RECEIVE_ALBUM:
-            return { ...state, [action.album.id]: action.album };
-        case UPLOAD_ALBUM:
-            return { ...state, [action.album.id]: action.album };
-        case DELETE_ALBUM:
-            const newState = { ...state };
-            delete newState[action.albumId];
-            return newState;
+        case CREATE_ALBUM_START:
+            return { ...state, isCreating: true, error: null };
+        case CREATE_ALBUM_SUCCESS:
+            return {
+                ...state,
+                albums: [...state.albums, action.payload],
+                isCreating: false,
+            };
+        case CREATE_ALBUM_FAILURE:
+            return { ...state, isCreating: false, error: action.payload };
         default:
             return state;
     }
 };
-
-export default albumsReducer;

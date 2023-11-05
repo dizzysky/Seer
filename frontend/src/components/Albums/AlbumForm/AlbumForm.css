@@ -20,7 +20,7 @@
 }
 
 .photo:not(.selected) {
-    filter: grayscale(100%); /* Grey out the non-selected photos */
+    filter: grayscale(70%); /* Grey out the non-selected photos */
 }
 
 .photo.selected {

@@ -6,26 +6,12 @@ import { deleteAlbum, fetchAlbums } from "../../../store/albums";
 import "./AlbumList.css";
 
 const AlbumsIndex = () => {
-    // const [albums, setAlbums] = useState([]);
     const dispatch = useDispatch();
     const albums = useSelector((state) => state.albums.albums);
 
-    // useEffect(() => {
-    //     csrfFetch("/api/albums")
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             setAlbums(data);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error fetching albums:", error);
-    //         });
-    // }, []);
-
     useEffect(() => {
-        // Dispatch an action to fetch albums which will update the redux store
         dispatch(fetchAlbums());
-    }, [dispatch]); // Add any other dependencies if necessary
+    }, [dispatch]);
 
     const handleDelete = (albumId) => {
         dispatch(deleteAlbum(albumId));
@@ -35,7 +21,6 @@ const AlbumsIndex = () => {
         <div className="albums-container">
             {albums.length > 0 ? (
                 albums.map((album) => (
-                    // Display each album
                     <div key={album.id}>
                         <h2>{album.title}</h2>
                         <p>{album.description}</p>

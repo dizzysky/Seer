@@ -19,6 +19,7 @@ const AlbumsIndex = () => {
 
     return (
         <div className="albums-container">
+            <a href="/albums/new">Create New Album</a>
             {albums.length > 0 ? (
                 albums.map((album) => (
                     <div key={album.id}>

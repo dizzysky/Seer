@@ -1,14 +1,14 @@
 // frontend/src/App.js
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+import LoginFormPage from "./components/Session/LoginFormPage";
+import SignupFormPage from "./components/Session/SignupFormPage";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
-import PhotosPage from "./components/PhotosPage";
-import PhotoShow from "./components/PhotoShow";
+import PhotosPage from "./components/Photos/PhotosPage";
+import PhotoShow from "./components/Photos/PhotoShow";
 import Footer from "./components/Footer";
-import PhotoUpload from "./components/PhotoUpload";
+import PhotoUpload from "./components/Photos/PhotoUpload";
 import Albums from "./components/Albums/AlbumList";
 import TagShow from "./components/TagShow";
 import AlbumForm from "./components/Albums/AlbumForm";

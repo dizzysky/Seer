@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import csrfFetch from "../../../store/csrf";
 import { useHistory } from "react-router-dom";
-import PhotoItem from "../../PhotoItem";
+import PhotoItem from "../../Photos/PhotoItem";
 import "./AlbumForm.css";
 import { useDispatch } from "react-redux";
 import { createAlbum } from "../../../store/albums";

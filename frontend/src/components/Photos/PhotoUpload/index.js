@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { uploadPhoto } from "../../store/photos";
+import { uploadPhoto } from "../../../store/photos";
 import { useHistory } from "react-router-dom"; // Import useHistory
-import { createPhoto } from "../../store/photos";
+import { createPhoto } from "../../../store/photos";
 import "./PhotoUpload.css";
 
 const PhotoUpload = () => {

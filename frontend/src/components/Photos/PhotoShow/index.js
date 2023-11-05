@@ -6,7 +6,7 @@ import {
     removePhoto,
     updatePhotoCaption,
     updatePhotoTags,
-} from "../../store/photos";
+} from "../../../store/photos";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faChevronLeft,
@@ -14,8 +14,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 
-import CommentList from "../CommentList";
-import CommentForm from "../CommentForm";
+import CommentList from "../../Comments/CommentList";
+import CommentForm from "../../Comments/CommentForm";
 
 import "./PhotoShow.css";
 

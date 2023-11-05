@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as commentActions from "../../store/comments";
+import * as commentActions from "../../../store/comments";
 import "font-awesome/css/font-awesome.min.css";
 import "./CommentItem.css";
 

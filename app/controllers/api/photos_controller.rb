@@ -99,9 +99,9 @@ class Api::PhotosController < ApplicationController
 def photo_params
   # Check if the photo is present and not just an empty hash
   if params[:photo].present? && !params[:photo].empty?
-    params.require(:photo).permit(:photo, :image, :caption, :uploader_id, :album_id, tag_ids: [])
+    params.require(:photo).permit(:photo, :image, :caption, :uploader_id, tag_ids: [])
   else
-    params.permit(:caption, :uploader_id, :album_id, tag_ids: [])
+    params.permit(:caption, :uploader_id, tag_ids: [])
   end
 end
 

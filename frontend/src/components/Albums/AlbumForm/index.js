@@ -32,10 +32,6 @@ const AlbumForm = () => {
             .then((data) => {
                 const photosArray = Object.values(data);
                 setUserPhotos(photosArray);
-                // if (editing && album) {
-                //     // If editing, set the selected photos
-                //     setSelectedPhotoIds(album.photoIds);
-                // }
             })
             .catch((error) => console.error("Error fetching photos:", error));
     }, [dispatch, albumId, editing]);
@@ -66,20 +62,14 @@ const AlbumForm = () => {
         );
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (editing) {
-            dispatch(
-                updateAlbum(albumId, {
-                    title,
-                    description,
-                    photoIds: selectedPhotoIds,
-                })
+            await dispatch(
+                updateAlbum(albumId, title, description, selectedPhotoIds)
             );
         } else {
-            dispatch(
-                createAlbum({ title, description, photoIds: selectedPhotoIds })
-            );
+            dispatch(createAlbum(title, description, selectedPhotoIds));
         }
         history.push("/albums");
     };

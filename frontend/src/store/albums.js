@@ -20,6 +20,28 @@ export const UPDATE_ALBUM_START = "UPDATE_ALBUM_START";
 export const UPDATE_ALBUM_SUCCESS = "UPDATE_ALBUM_SUCCESS";
 export const UPDATE_ALBUM_FAILURE = "UPDATE_ALBUM_FAILURE";
 
+export const fetchSingleAlbum = (albumId) => async (dispatch) => {
+    dispatch({ type: FETCH_SINGLE_ALBUM_START });
+
+    try {
+        const response = await csrfFetch(`/api/albums/${albumId}`);
+
+        if (response.ok) {
+            const album = await response.json();
+            dispatch({
+                type: FETCH_SINGLE_ALBUM_SUCCESS,
+                payload: album,
+            });
+        } else {
+            throw new Error("Failed to fetch album");
+        }
+    } catch (error) {
+        dispatch({
+            type: FETCH_SINGLE_ALBUM_FAILURE,
+            payload: error.message,
+        });
+    }
+};
 export const updateAlbum =
     (albumId, title, description, photoIds) => async (dispatch) => {
         dispatch({ type: UPDATE_ALBUM_START });
@@ -43,6 +65,7 @@ export const updateAlbum =
                 });
             } else {
                 const error = await response.json();
+                console.error("Update failed:", error); // Log the error details
                 dispatch({
                     type: UPDATE_ALBUM_FAILURE,
                     payload: error,
@@ -55,30 +78,6 @@ export const updateAlbum =
             });
         }
     };
-
-export const fetchSingleAlbum = (albumId) => async (dispatch) => {
-    dispatch({ type: FETCH_SINGLE_ALBUM_START });
-
-    try {
-        const response = await csrfFetch(`/api/albums/${albumId}`);
-
-        if (response.ok) {
-            const album = await response.json();
-            dispatch({
-                type: FETCH_SINGLE_ALBUM_SUCCESS,
-                payload: album,
-            });
-        } else {
-            throw new Error("Failed to fetch album");
-        }
-    } catch (error) {
-        dispatch({
-            type: FETCH_SINGLE_ALBUM_FAILURE,
-            payload: error.message,
-        });
-    }
-};
-
 export const createAlbum =
     (title, description, photoIds) => async (dispatch) => {
         dispatch({ type: CREATE_ALBUM_START });

@@ -23,7 +23,9 @@ const AlbumsIndex = () => {
             {albums.length > 0 ? (
                 albums.map((album) => (
                     <div key={album.id}>
-                        <h2>{album.title}</h2>
+                        <Link to={`/albums/${album.id}`}>
+                            <h2>{album.title}</h2>
+                        </Link>
                         <p>{album.description}</p>
                         <Link to={`/albums/${album.id}/edit`}>Edit</Link>
                         <button onClick={() => handleDelete(album.id)}>

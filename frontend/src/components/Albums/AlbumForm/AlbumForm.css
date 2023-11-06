@@ -14,16 +14,16 @@
     padding-right: 5%;
 }
 
-.photo {
+.photo-selection-prompt .photo {
     transition: filter 0.3s;
     /* Assuming you have some sort of default settings for your photos */
 }
 
-.photo:not(.selected) {
+.photo-selection-prompt .photo:not(.selected) {
     filter: grayscale(70%); /* Grey out the non-selected photos */
 }
 
-.photo.selected {
+.photo-selection-prompt .photo.selected {
     border: 10px solid blue; /* Blue border for selected photos */
     filter: none; /* Remove grey filter for selected photos */
 }

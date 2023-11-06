@@ -12,6 +12,7 @@ import PhotoUpload from "./components/Photos/PhotoUpload";
 import Albums from "./components/Albums/AlbumList";
 import TagShow from "./components/TagShow";
 import AlbumForm from "./components/Albums/AlbumForm";
+import AlbumShow from "./components/Albums/AlbumShow";
 
 function App() {
     const location = useLocation();
@@ -45,6 +46,7 @@ function App() {
                     </Route>
                     <Route path="/albums" exact component={Albums} />
                     <Route path="/albums/new" exact component={AlbumForm} />
+                    <Route path="/albums/:albumId" component={AlbumShow} />
                     <Route path="/tags/:tagId" component={TagShow} />
                 </Switch>
             </div>

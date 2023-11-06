@@ -46,7 +46,11 @@ function App() {
                     </Route>
                     <Route path="/albums" exact component={Albums} />
                     <Route path="/albums/new" exact component={AlbumForm} />
-                    <Route path="/albums/:albumId" component={AlbumShow} />
+                    <Route
+                        path="/albums/:albumId"
+                        exact
+                        component={AlbumShow}
+                    />
                     <Route path="/tags/:tagId" component={TagShow} />
                 </Switch>
             </div>

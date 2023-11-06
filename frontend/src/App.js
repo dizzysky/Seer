@@ -47,6 +47,12 @@ function App() {
                     <Route path="/albums" exact component={Albums} />
                     <Route path="/albums/new" exact component={AlbumForm} />
                     <Route
+                        path="/albums/:albumId/edit"
+                        exact
+                        render={(props) => <AlbumForm {...props} />}
+                    />
+
+                    <Route
                         path="/albums/:albumId"
                         exact
                         component={AlbumShow}

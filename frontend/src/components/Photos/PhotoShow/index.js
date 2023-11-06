@@ -100,7 +100,6 @@ const PhotoShow = () => {
     const saveTags = async () => {
         try {
             const tagIds = await resolveTagNamesToIds(editableTags);
-            console.log("Tag IDs to be saved:", tagIds);
             await dispatch(updatePhotoTags(photo.id, tagIds));
             setIsEditingTags(false);
         } catch (error) {
@@ -124,8 +123,6 @@ const PhotoShow = () => {
         const tags = tagsArrays.map((tagsArray, index) =>
             tagsArray.find((tag) => tag.name === tagNames[index])
         );
-
-        console.log("Filtered tags:", tags);
 
         return tags.map((tag) => (tag ? tag.id : undefined)); // Ensure that we handle the case where the tag might not be found
     };

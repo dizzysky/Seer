@@ -1,31 +1,62 @@
 import React, { useState, useEffect } from "react";
 import csrfFetch from "../../../store/csrf";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    createAlbum,
+    updateAlbum,
+    fetchSingleAlbum,
+} from "../../../store/albums";
 import PhotoItem from "../../Photos/PhotoItem";
 import "./AlbumForm.css";
-import { useDispatch } from "react-redux";
-import { createAlbum } from "../../../store/albums";
 
-const AlbumForm = ({ onAlbumCreated }) => {
+const AlbumForm = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [userPhotos, setUserPhotos] = useState([]);
     const [selectedPhotoIds, setSelectedPhotoIds] = useState([]);
-    const history = useHistory();
+    const { albumId } = useParams(); // Get the album ID from URL if it exists
     const dispatch = useDispatch();
-
+    const history = useHistory();
+    const editing = !!albumId; // Check if we are editing an existing album
+    // const album = useSelector((state) => state.albums[albumId]);
+    const album = useSelector((state) => state.albums.currentAlbum);
     useEffect(() => {
+        if (editing) {
+            // If editing, dispatch an action to fetch the album and then set the form fields
+            dispatch(fetchSingleAlbum(albumId));
+        }
         // Fetch the user's photos when the component mounts
         csrfFetch("/api/photos")
-            .then((response) => {
-                return response.json();
-            })
+            .then((response) => response.json())
             .then((data) => {
                 const photosArray = Object.values(data);
                 setUserPhotos(photosArray);
+                // if (editing && album) {
+                //     // If editing, set the selected photos
+                //     setSelectedPhotoIds(album.photoIds);
+                // }
             })
             .catch((error) => console.error("Error fetching photos:", error));
-    }, []);
+    }, [dispatch, albumId, editing]);
+
+    useEffect(() => {
+        // If editing and the album data is available, set the form fields
+        if (editing && album) {
+            setTitle(album.title);
+            setDescription(album.description);
+            setSelectedPhotoIds(album.photoIds);
+        }
+    }, [album, editing]); // Only re-run this effect if `album` changes or if we are toggling the editing state
+
+    useEffect(() => {
+        // If editing, set the form fields when the album data is available
+        if (editing && album) {
+            setTitle(album.title);
+            setDescription(album.description);
+            setSelectedPhotoIds(album.photoIds);
+        }
+    }, [album, editing]);
 
     const togglePhotoSelection = (photoId) => {
         setSelectedPhotoIds((prevSelected) =>
@@ -37,8 +68,19 @@ const AlbumForm = ({ onAlbumCreated }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(createAlbum(title, description, selectedPhotoIds));
-        // Consider waiting for a success action before redirecting or handle it in a then() block if your action returns a promise
+        if (editing) {
+            dispatch(
+                updateAlbum(albumId, {
+                    title,
+                    description,
+                    photoIds: selectedPhotoIds,
+                })
+            );
+        } else {
+            dispatch(
+                createAlbum({ title, description, photoIds: selectedPhotoIds })
+            );
+        }
         history.push("/albums");
     };
 
@@ -86,7 +128,7 @@ const AlbumForm = ({ onAlbumCreated }) => {
                     </div>
                 </div>
                 <button type="submit" className="create-album-btn">
-                    Create Album
+                    {editing ? "Update Album" : "Create Album"}
                 </button>
             </form>
         </>

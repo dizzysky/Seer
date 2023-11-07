@@ -90,10 +90,15 @@ const PhotoShow = () => {
         }
     };
 
-    const removeTag = (index) => {
-        const tagsCopy = [...editableTags];
-        tagsCopy.splice(index, 1);
-        setEditableTags(tagsCopy);
+    // This function now expects a tag's name or id
+    const removeTag = (tagName) => {
+        // Find the index of the tag with the provided name or id
+        const index = editableTags.indexOf(tagName);
+        if (index > -1) {
+            const tagsCopy = [...editableTags];
+            tagsCopy.splice(index, 1);
+            setEditableTags(tagsCopy);
+        }
     };
 
     const saveTags = async () => {
@@ -166,12 +171,13 @@ const PhotoShow = () => {
                             {editableTags.map((tag, index) => (
                                 <span key={index} className="editable-tag">
                                     {tag}
-                                    <span onClick={() => removeTag(tag.id)}>
+                                    <span onClick={() => removeTag(tag)}>
                                         {" "}
                                         x{" "}
                                     </span>
                                 </span>
                             ))}
+
                             <input
                                 value={newTag}
                                 onChange={(e) => setNewTag(e.target.value)}

@@ -12,10 +12,10 @@ Rails.application.routes.draw do
 
     resources :albums, only: [:index, :show, :create, :update, :destroy]
 
-
     resources :tags
+ 
   end
-
+   
   get 'photos/show_html/:id', to: 'photos#show_html', as: 'photo_show_html'
   post '/api/photos', to: 'photos#create'
 

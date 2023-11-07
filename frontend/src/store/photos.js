@@ -42,7 +42,6 @@ export const createPhoto = (formData) => async (dispatch) => {
             dispatch(uploadPhoto(photo));
             return photo;
         } else if (res.status === 204) {
-            // Fixed typo here from 'res.stats' to 'res.status'
         } else {
             try {
                 const data = await res.json();
@@ -96,7 +95,6 @@ export const updatePhotoTags = (photoId, tags) => async (dispatch) => {
         const response = await csrfFetch(`/api/photos/${photoId}`, {
             method: "PUT",
             body: JSON.stringify({ tag_names: tags }),
-            // Your backend endpoint needs to handle this format
         });
 
         if (response.ok) {
@@ -114,12 +112,7 @@ export const updatePhotoTags = (photoId, tags) => async (dispatch) => {
 };
 
 const photosReducer = (state = {}, action) => {
-    console.log("Dispatched action type:", action.type);
     switch (action.type) {
-        case "TEST_ACTION":
-            alert("TEST_ACTION is recognized");
-            return state;
-
         case UPDATE_PHOTO_TAGS:
             console.log("ACTION ", action.payload);
 
@@ -129,7 +122,6 @@ const photosReducer = (state = {}, action) => {
                 [updatedPhotoId]: {
                     ...state[updatedPhotoId],
                     tags: action.payload.tags,
-                    // Make sure the payload contains the updated tags array
                 },
             };
         case LOAD_PHOTOS:

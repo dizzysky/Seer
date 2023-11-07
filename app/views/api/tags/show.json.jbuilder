@@ -1,5 +1,7 @@
-json.id @tag.id
-json.name @tag.name
-json.photos @tag.photos do |photo|
-    json.(photo, :id, :caption, :uploader_id, :created_at)
+json.extract! @tag, :id, :name
+json.photos do
+  json.array! @tag.photos do |photo|
+    json.extract! photo, :id, :caption
+    json.url url_for(photo.photo) if photo.photo.attached?
+  end
 end

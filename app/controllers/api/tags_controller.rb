@@ -15,9 +15,12 @@ class Api::TagsController < ApplicationController
     end
 
     def show
-        @tag = Tag.find(params[:id])
-        @photos = @tag.photos # Assuming there's a has_many association set up
-        render :show
+        @tag = Tag.includes(:photos).find(params[:id])
+        if @tag
+            render :show
+        else
+            render json: { error: "Tag not found" }, status: :not_found
+        end
     end
 
     private 

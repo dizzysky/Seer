@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleAlbum } from "../../../store/albums";
-import { fetchPhoto } from "../../../store/photos"; // assuming this is the correct path
+import { fetchPhoto } from "../../../store/photos";
 import PhotoItem from "../../Photos/PhotoItem";
 
 const AlbumShow = () => {
@@ -63,7 +63,6 @@ const AlbumShow = () => {
             </div>
         );
     } else {
-        // If there is no album, no photos, or they are still loading, you can display an appropriate message
         return (
             <div>
                 No photos in this album or album does not exist, or still

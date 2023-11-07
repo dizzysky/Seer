@@ -85,7 +85,6 @@ const PhotoShow = () => {
 
     const addTag = () => {
         if (newTag) {
-            const updatedTags = [...editableTags, newTag];
             setEditableTags([...editableTags, newTag]);
             setNewTag("");
         }
@@ -98,33 +97,16 @@ const PhotoShow = () => {
     };
 
     const saveTags = async () => {
-        try {
-            const tagIds = await resolveTagNamesToIds(editableTags);
-            await dispatch(updatePhotoTags(photo.id, tagIds));
-            setIsEditingTags(false);
-        } catch (error) {
-            console.error("Failed to save tags:", error);
+        if (sessionUser && sessionUser.id === photo.uploaderId) {
+            try {
+                // Assuming updatePhotoTags takes the photo id and an array of tag names
+                await dispatch(updatePhotoTags(photo.id, editableTags));
+                setIsEditingTags(false); // Exit tag editing mode
+            } catch (error) {
+                // Handle error - maybe show a message to the user
+                console.error("Failed to save tags", error);
+            }
         }
-    };
-
-    // Resolve tag names to IDs before sending to backend
-    const resolveTagNamesToIds = async (tagNames) => {
-        const responses = await Promise.all(
-            tagNames.map((name) =>
-                fetch(`/api/tags?name=${encodeURIComponent(name)}`)
-            )
-        );
-
-        const tagsArrays = await Promise.all(
-            responses.map((res) => res.json())
-        );
-
-        // Here we make sure that 'name' is passed correctly to the find function
-        const tags = tagsArrays.map((tagsArray, index) =>
-            tagsArray.find((tag) => tag.name === tagNames[index])
-        );
-
-        return tags.map((tag) => (tag ? tag.id : undefined)); // Ensure that we handle the case where the tag might not be found
     };
 
     const handleSubmit = async () => {
@@ -178,11 +160,6 @@ const PhotoShow = () => {
                 )}
                 <p>Uploaded by: {photo.username || "Loading..."}</p>
                 <p>Uploaded on {uploadTime}</p>
-                {/* {sessionUser && sessionUser.id === photo.uploaderId && (
-                    <button onClick={handleDelete} className="delete-button">
-                        Delete Photo
-                    </button>
-                )} */}
                 <div className="photo-tags">
                     {isEditingTags ? (
                         <>

@@ -91,21 +91,18 @@ export const updatePhotoCaption = (photoId, newCaption) => async (dispatch) => {
     }
 };
 
-// In your photo actions file
 export const updatePhotoTags = (photoId, tags) => async (dispatch) => {
     try {
         const response = await csrfFetch(`/api/photos/${photoId}`, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ tag_names: tags }), // Your backend endpoint needs to handle this format
+            body: JSON.stringify({ tag_names: tags }),
+            // Your backend endpoint needs to handle this format
         });
 
         if (response.ok) {
             const updatedPhoto = await response.json();
             dispatch({
-                type: "UPDATE_PHOTO_TAGS",
+                type: "photos/UPDATE_PHOTO_TAGS",
                 payload: updatedPhoto,
             });
         } else {
@@ -117,7 +114,24 @@ export const updatePhotoTags = (photoId, tags) => async (dispatch) => {
 };
 
 const photosReducer = (state = {}, action) => {
+    console.log("Dispatched action type:", action.type);
     switch (action.type) {
+        case "TEST_ACTION":
+            alert("TEST_ACTION is recognized");
+            return state;
+
+        case UPDATE_PHOTO_TAGS:
+            console.log("ACTION ", action.payload);
+
+            const updatedPhotoId = action.payload.id;
+            return {
+                ...state,
+                [updatedPhotoId]: {
+                    ...state[updatedPhotoId],
+                    tags: action.payload.tags,
+                    // Make sure the payload contains the updated tags array
+                },
+            };
         case LOAD_PHOTOS:
             return { ...state, ...action.payload };
         case RECEIVE_PHOTO:
@@ -128,15 +142,7 @@ const photosReducer = (state = {}, action) => {
             const newState = { ...state };
             delete newState[action.photoId];
             return newState;
-        case UPDATE_PHOTO_TAGS:
-            const updatedPhotoId = action.payload.id;
-            return {
-                ...state,
-                [updatedPhotoId]: {
-                    ...state[updatedPhotoId],
-                    tags: action.payload.tags, // Make sure the payload contains the updated tags array
-                },
-            };
+
         default:
             return state;
     }

@@ -8,11 +8,7 @@ Rails.application.routes.draw do
       delete 'tags/:tag_id', to: 'photos#remove_tag' 
       post 'add_tag', on: :member
     end
-    
 
-    # resources :albums do 
-    #   resources :photos, only: [:index, :create, :destroy, :show]
-    # end
 
     resources :albums, only: [:index, :show, :create, :update, :destroy]
 

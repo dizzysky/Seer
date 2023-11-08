@@ -20,13 +20,9 @@ function TagShow() {
 
     return (
         <div>
-            <h1>Tag: {tag.name}</h1>
+            <h1>{tag.name}</h1>
             <div className="grid">
                 {tag.photos.map((photo) => (
-                    // <div key={photo.id}>
-                    //     <img src={photo.url} alt={photo.caption} />
-                    //     <p>{photo.caption}</p>
-                    // </div>
                     <Link to={`/photos/${photo.id}`} key={photo.id}>
                         <PhotoItem
                             key={photo.id}

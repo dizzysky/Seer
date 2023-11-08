@@ -6,7 +6,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url("../../../assets/IMG_5447.JPG");
-    position: relative; /* Make this a positioned parent */
+    position: relative;
 }
 
 .login-container::before {
@@ -29,8 +29,6 @@
     position: relative; /* Position this above the overlay */
     z-index: 2;
 }
-
-/* ... rest of your styles unchanged ... */
 
 h1 {
     margin-bottom: 20px;
@@ -65,7 +63,7 @@ h1 {
 }
 
 .login-input::placeholder {
-    font-size: 14px; /* Adjust as needed */
+    font-size: 14px;
 }
 
 .input-error {

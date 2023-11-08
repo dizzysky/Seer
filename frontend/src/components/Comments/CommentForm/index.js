@@ -25,7 +25,9 @@ const CommentForm = ({ photoId }) => {
                 placeholder="Add a comment..."
                 required
             />
-            <button type="submit">Post</button>
+            <button className="comment-form-button" type="submit">
+                Post
+            </button>
         </form>
     );
 };

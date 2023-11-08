@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -36,6 +36,34 @@ const PhotoShow = () => {
     const currentIndex = photoIds.indexOf(id);
     const nextPhotoId = photoIds[currentIndex + 1];
     const prevPhotoId = photoIds[currentIndex - 1];
+
+    const dropdownRef = useRef(null);
+    const captionRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+                showMenu &&
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setShowMenu(false); // Assuming you have a state setter like this
+            }
+            if (
+                isEditing &&
+                captionRef.current &&
+                !captionRef.current.contains(event.target)
+            ) {
+                setIsEditing(false); // And a state setter for this as well
+            }
+        }
+        // Add the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Remove the event listener
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [showMenu, isEditing]);
 
     useEffect(() => {
         dispatch(fetchPhoto(id));
@@ -151,7 +179,7 @@ const PhotoShow = () => {
             </div>
             <div className="photo-details">
                 {isEditing ? (
-                    <div>
+                    <div ref={captionRef}>
                         <input
                             value={newCaption}
                             onChange={(e) => setNewCaption(e.target.value)}
@@ -209,11 +237,10 @@ const PhotoShow = () => {
                         />
 
                         {showMenu && (
-                            <div className="dropdown-menu">
+                            <div className="dropdown-menu" ref={dropdownRef}>
                                 <div onClick={handleEditClick}>
                                     Edit Caption
                                 </div>
-                                {/* Implement an 'editTags' function */}
                                 <div onClick={editTags}>Edit Tags</div>
                                 <div onClick={handleDelete}>Delete Photo</div>
                             </div>
@@ -222,8 +249,6 @@ const PhotoShow = () => {
                 )}
             </div>
             <div className="comments-section">
-                {" "}
-                {/* New wrapper */}
                 <CommentList photoId={id} />
                 <CommentForm photoId={id} style={{ marginBottom: "200px" }} />
             </div>

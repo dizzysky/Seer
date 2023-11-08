@@ -1,35 +1,10 @@
-.comment-list {
-    /* margin-top: 10px;  */
-  }
-  
-  .comment-item {
+.comment-item {
     display: flex;
     align-items: center;
-    /* border: 1px solid #ccc; */
-    /* padding: px; */
     margin-bottom: 10px;
-    /* background-color: #f9f9f9; */
-  }
-  
-  .comment-item p {
-    margin: 0; /* Remove default margin for paragraphs */
-  }
-/*   
-  .comment-item button {
-    background-color: #d9534f; 
-    color: #fff; 
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  } */
-  
-  /* .comment-item button:hover {
-    background-color: #c9302c;
-  }
-   */
+}
 
-
-   .comment-item button {
+.comment-item button {
     background: transparent;
     margin-left: auto;
-   }
+}

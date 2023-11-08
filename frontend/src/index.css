@@ -23,9 +23,8 @@ body {
 
 /* Your content should grow to take available space */
 .content {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     padding-bottom: 70px;
-    /* margin-top: 64px; */
 }
 .no-scroll {
     overflow: hidden;
@@ -34,4 +33,12 @@ body {
 /* Footer will take its natural height and not more */
 .footer {
     flex-shrink: 0;
+}
+
+.normal-page {
+    padding-top: 64px; /* This should match the height of your navbar */
+}
+
+h1 {
+    margin-left: 5.5em;
 }

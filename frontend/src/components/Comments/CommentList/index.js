@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchComments } from "../../../store/comments"; // Import your action creator
+import { fetchComments } from "../../../store/comments";
 import CommentItem from "../CommentItem";
 import "./CommentList.css";
 
@@ -15,7 +15,7 @@ const CommentList = ({ photoId }) => {
     );
 
     useEffect(() => {
-        dispatch(fetchComments(photoId)); // Use the photoId prop in your action
+        dispatch(fetchComments(photoId));
     }, [dispatch, photoId]);
 
     return (

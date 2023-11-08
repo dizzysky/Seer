@@ -40,7 +40,7 @@ const AlbumShow = () => {
     if (album && photosLoaded) {
         return (
             <div>
-                <h2>{album.title}</h2>
+                <h1>{album.title}</h1>
                 <p>{album.description}</p>
                 <div className="album-grid">
                     {photos.map(

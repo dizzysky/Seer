@@ -17,6 +17,9 @@ import AlbumShow from "./components/Albums/AlbumShow";
 function App() {
     const location = useLocation();
     const currentPath = location.pathname;
+
+    const contentClass =
+        currentPath === "/" ? "content" : "content normal-page";
     return (
         <div
             className={`main-container ${
@@ -24,7 +27,7 @@ function App() {
             }`}
         >
             <Navigation />
-            <div className="content">
+            <div className={contentClass}>
                 <Switch>
                     <Route exact path="/">
                         <SplashPage />

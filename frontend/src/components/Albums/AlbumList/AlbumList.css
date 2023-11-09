@@ -1,8 +1,31 @@
 .albums-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 100px;
+    justify-content: flex-start;
     margin-top: 100px;
 }
 
 .albums-container > a,
 .albums-container > p {
     margin-left: 100px;
+}
+
+.album-entry {
+    flex: 0 1 200px; /* Do not grow, can shrink, base width of 200px */
+    margin-bottom: 20px; /* Space at the bottom of each album entry */
+    padding: 10px;
+}
+
+.album img {
+    width: 100px; /* or any other fixed size */
+    height: 100px;
+    object-fit: cover; /* this keeps the aspect ratio and covers the area */
+}
+
+.album-entry img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }

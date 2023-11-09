@@ -38,6 +38,6 @@ body {
     padding-top: 64px; /* This should match the height of your navbar */
 }
 
-h1 {
+h1:not(.splash-container h1) {
     margin-left: 5.5em;
 }

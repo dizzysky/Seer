@@ -21,6 +21,59 @@
     filter: none; /* Remove grey filter for selected photos */
 }
 
+.form-group {
+    margin-bottom: 20px; /* Adds space between each form group */
+}
+
+.form-group > label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.create-album-btn {
+    background-color: #333; /* A nice blue color, or choose your own */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-album-btn:hover {
+    background-color: #0056b3; /* A darker blue on hover */
+}
+
+#album-title,
+#album-description {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 10px 0;
+    width: 100%;
+}
+
+#album-title:focus,
+#album-description:focus {
+    border-bottom: 2px solid #007bff; /* A blue border for focus */
+    outline: none;
+}
+
 .album-form {
-    /* margin-top: 100px; */
+    width: 60%; /* This should be the same as .album-grid */
+    margin: 0 auto; /* Center the form */
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-selection-prompt > p {
+    margin-bottom: 20px;
+}
+
+.create-album-btn-container {
+    text-align: right;
+}
+
+.form-group > input {
+    background-color: #ccc;
 }

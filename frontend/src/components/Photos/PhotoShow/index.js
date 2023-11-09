@@ -191,8 +191,8 @@ const PhotoShow = () => {
                         {photo.caption}
                     </p>
                 )}
-                <p>Uploaded by: {photo.username || "Loading..."}</p>
-                <p>Uploaded on {uploadTime}</p>
+                <p>{photo.username || "Loading..."}</p>
+                <p>{uploadTime}</p>
                 <div className="photo-tags">
                     {isEditingTags ? (
                         <>

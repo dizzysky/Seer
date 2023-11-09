@@ -34,9 +34,7 @@ const AlbumsIndex = () => {
                     </div>
                 ))
             ) : (
-                <p>
-                    You have no albums. <a href="/albums/new">Create one?</a>
-                </p>
+                <p>You have no albums.</p>
             )}
         </div>
     );

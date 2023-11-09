@@ -90,7 +90,7 @@ const AlbumForm = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="album-description">Album Description</label>
-                    <textarea
+                    <input
                         id="album-description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -117,9 +117,11 @@ const AlbumForm = () => {
                         ))}
                     </div>
                 </div>
-                <button type="submit" className="create-album-btn">
-                    {editing ? "Update Album" : "Create Album"}
-                </button>
+                <div className="create-album-btn-container">
+                    <button type="submit" className="create-album-btn">
+                        {editing ? "Update Album" : "Create Album"}
+                    </button>
+                </div>
             </form>
         </>
     );

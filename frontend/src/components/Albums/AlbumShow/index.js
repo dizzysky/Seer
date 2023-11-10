@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleAlbum } from "../../../store/albums";
 import { fetchPhoto } from "../../../store/photos";
 import PhotoItem from "../../Photos/PhotoItem";
+import "./AlbumShow.css";
 
 const AlbumShow = () => {
     const { albumId } = useParams();
@@ -40,8 +41,10 @@ const AlbumShow = () => {
     if (album && photosLoaded) {
         return (
             <div>
-                <h1>{album.title}</h1>
-                <p>{album.description}</p>
+                <div className="album-content">
+                    <h1 className="album-title">{album.title}</h1>
+                    <p className="album-description">{album.description}</p>
+                </div>
                 <div className="album-grid">
                     {photos.map(
                         (photo) =>

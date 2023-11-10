@@ -1,0 +1,21 @@
+.album-content {
+    padding-left: 5%; /* Match the album-grid's padding */
+}
+
+.album-title,
+.album-description {
+    text-align: left;
+    /* No margin-left or margin-right needed if padding is used */
+}
+
+.album-grid {
+    column-count: 4;
+    column-gap: 5px;
+    margin: 0 auto; /* Keeps the grid centered */
+    width: 60%;
+    padding-left: 5%; /* This padding aligns the start of the grid items */
+    padding-right: 5%; /* This padding is for the right side alignment */
+    /* Remove the negative margin if it's not needed */
+}
+
+/* Rest of your styles */

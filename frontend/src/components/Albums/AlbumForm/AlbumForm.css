@@ -64,6 +64,7 @@
     margin: 0 auto; /* Center the form */
     display: flex;
     flex-direction: column;
+    margin-top: 3em;
 }
 
 .photo-selection-prompt > p {

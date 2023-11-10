@@ -36,7 +36,9 @@ function Navigation({ className }) {
     if (sessionUser) {
         sessionLinks = (
             <div className="profile-button-container">
-                <NavLink to="/albums">Your Albums</NavLink>
+                <NavLink to="/albums" style={{ marginRight: "16px" }}>
+                    Your Albums
+                </NavLink>
 
                 <NavLink to="/upload">
                     <FontAwesomeIcon icon={faUpload} className="upload-icon" />
@@ -53,7 +55,11 @@ function Navigation({ className }) {
                 <NavLink className="nav-link" to="/login">
                     Log In
                 </NavLink>
-                <NavLink className="nav-link navbar-signup-button" to="/signup">
+                <NavLink
+                    className="nav-link navbar-signup-button"
+                    style={{ color: "black" }}
+                    to="/signup"
+                >
                     Sign Up
                 </NavLink>
             </>

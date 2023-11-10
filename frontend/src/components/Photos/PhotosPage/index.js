@@ -18,7 +18,6 @@ const PhotosPage = () => {
 
     return (
         <div className="photos-page-container">
-            <h1>Photos</h1>
             <div className="grid-container">
                 <div className="grid">
                     {Array.isArray(photos) && photos.length > 0 ? (

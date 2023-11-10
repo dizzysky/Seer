@@ -53,10 +53,10 @@ h1 {
     cursor: pointer;
     font-weight: bold;
 }
-
+/* 
 .input-error {
     border: 2px solid red;
-}
+} */
 
 .field-error {
     color: red;

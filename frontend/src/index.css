@@ -46,6 +46,7 @@ a {
     text-decoration: none;
 }
 
+a:link,
 a:visited {
     color: inherit; /* This will make visited links use the color they inherit from their parent */
 }

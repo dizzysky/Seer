@@ -21,11 +21,8 @@ const AlbumsIndex = () => {
         <>
             <button className="create-album-btn">
                 <a href="/albums/new">
-                    Create New Album
-                    <i
-                        className="fa fa-plus"
-                        style={{ paddingLeft: "10px" }}
-                    ></i>
+                    <i className="fa fa-plus" aria-hidden="true"></i> Create New
+                    Album
                 </a>
             </button>
             <div className="albums-container">
@@ -33,16 +30,26 @@ const AlbumsIndex = () => {
                     albums.map((album) => (
                         <div className="album-entry" key={album.id}>
                             <Link to={`/albums/${album.id}`}>
-                                <h1>{album.title}</h1>
-
-                                {album.coverPhotoUrl && (
-                                    <img
-                                        src={album.coverPhotoUrl}
-                                        alt={`Thumbnail for ${album.title}`}
-                                    />
-                                )}
+                                <div className="album-thumbnail">
+                                    {album.coverPhotoUrl && (
+                                        <img
+                                            src={album.coverPhotoUrl}
+                                            alt={`Thumbnail for ${album.title}`}
+                                        />
+                                    )}
+                                    <div className="overlay">
+                                        <div className="text">
+                                            {album.title}
+                                        </div>
+                                    </div>
+                                    <div
+                                        className="trash-icon"
+                                        onClick={() => handleDelete(album.id)}
+                                    >
+                                        <i className="fa fa-trash "></i>
+                                    </div>
+                                </div>
                             </Link>
-                            <p>{album.description}</p>
                             <Link to={`/albums/${album.id}/edit`}>Edit</Link>
                             <button onClick={() => handleDelete(album.id)}>
                                 Delete

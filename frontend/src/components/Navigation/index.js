@@ -85,7 +85,7 @@ function Navigation({ className }) {
                     to="/photos"
                     activeClassName="active"
                 >
-                    Explore Photos
+                    All Photos
                 </NavLink>
             </li>
             <li className="nav-item session-links">{sessionLinks}</li>

@@ -19,16 +19,17 @@ const AlbumsIndex = () => {
 
     return (
         <>
-            <button className="create-album-btn">
+            <button id="create-new-album-btn">
                 <a href="/albums/new">
-                    <i className="fa fa-plus" aria-hidden="true"></i> Create New
-                    Album
+                    Create New Album{" "}
+                    <i className="fa fa-plus" aria-hidden="true"></i>
                 </a>
             </button>
             <div className="albums-container">
                 {albums.length > 0 ? (
                     albums.map((album) => (
                         <div className="album-entry" key={album.id}>
+                            <div className="text">{album.title}</div>
                             <div className="album-thumbnail">
                                 <Link to={`/albums/${album.id}`}>
                                     {album.coverPhotoUrl && (
@@ -38,18 +39,6 @@ const AlbumsIndex = () => {
                                         />
                                     )}
                                 </Link>
-                                <div className="overlay">
-                                    <div className="text">{album.title}</div>
-                                </div>
-                                <div
-                                    className="trash-icon"
-                                    onClick={() => handleDelete(album.id)}
-                                >
-                                    <i
-                                        className="fa fa-trash "
-                                        style={{ backgroundColor: "blue" }}
-                                    ></i>
-                                </div>
                             </div>
 
                             <Link to={`/albums/${album.id}/edit`}>Edit</Link>

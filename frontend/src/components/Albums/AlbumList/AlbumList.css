@@ -12,6 +12,7 @@
     height: 240px;
     width: 240px;
     overflow: hidden;
+    position: relative;
 }
 
 .album-thumbnail img {
@@ -23,4 +24,15 @@
 #create-new-album-btn {
     margin-left: 10vw;
     margin-top: 60px;
+}
+
+#album-delete-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: none;
+}
+
+.album-thumbnail:hover #album-delete-btn {
+    display: block; /* Show the button when hovering over the thumbnail */
 }

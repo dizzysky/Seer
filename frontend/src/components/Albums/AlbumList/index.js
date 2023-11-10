@@ -39,12 +39,13 @@ const AlbumsIndex = () => {
                                         />
                                     )}
                                 </Link>
+                                <button
+                                    id="album-delete-btn"
+                                    onClick={() => handleDelete(album.id)}
+                                >
+                                    Delete
+                                </button>
                             </div>
-
-                            <Link to={`/albums/${album.id}/edit`}>Edit</Link>
-                            <button onClick={() => handleDelete(album.id)}>
-                                Delete
-                            </button>
                         </div>
                     ))
                 ) : (

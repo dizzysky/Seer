@@ -41,9 +41,12 @@ const AlbumShow = () => {
     if (album && photosLoaded) {
         return (
             <div>
-                <div className="album-content">
+                <div className="album-details">
                     <h1 className="album-title">{album.title}</h1>
                     <p className="album-description">{album.description}</p>
+                    <Link to={`/albums/${album.id}/edit`}>
+                        <button>Edit</button>
+                    </Link>
                 </div>
                 <div className="album-grid">
                     {photos.map(

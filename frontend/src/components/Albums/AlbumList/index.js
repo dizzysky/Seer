@@ -29,27 +29,29 @@ const AlbumsIndex = () => {
                 {albums.length > 0 ? (
                     albums.map((album) => (
                         <div className="album-entry" key={album.id}>
-                            <Link to={`/albums/${album.id}`}>
-                                <div className="album-thumbnail">
+                            <div className="album-thumbnail">
+                                <Link to={`/albums/${album.id}`}>
                                     {album.coverPhotoUrl && (
                                         <img
                                             src={album.coverPhotoUrl}
                                             alt={`Thumbnail for ${album.title}`}
                                         />
                                     )}
-                                    <div className="overlay">
-                                        <div className="text">
-                                            {album.title}
-                                        </div>
-                                    </div>
-                                    <div
-                                        className="trash-icon"
-                                        onClick={() => handleDelete(album.id)}
-                                    >
-                                        <i className="fa fa-trash "></i>
-                                    </div>
+                                </Link>
+                                <div className="overlay">
+                                    <div className="text">{album.title}</div>
                                 </div>
-                            </Link>
+                                <div
+                                    className="trash-icon"
+                                    onClick={() => handleDelete(album.id)}
+                                >
+                                    <i
+                                        className="fa fa-trash "
+                                        style={{ backgroundColor: "blue" }}
+                                    ></i>
+                                </div>
+                            </div>
+
                             <Link to={`/albums/${album.id}/edit`}>Edit</Link>
                             <button onClick={() => handleDelete(album.id)}>
                                 Delete

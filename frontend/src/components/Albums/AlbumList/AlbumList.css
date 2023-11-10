@@ -54,24 +54,10 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 10%, transparent);
 }
 
-.trash-icon {
-    /* ... other styles ... */
-    display: flex; /* Use flex to center the icon */
-    align-items: center; /* Vertical center */
-    justify-content: center; /* Horizontal center */
-    width: 30px; /* Adjust size as needed */
-    height: 30px; /* Adjust size as needed */
-    background-color: red; /* Temporarily set a high-contrast background color */
-    border-radius: 50%; /* Maintain the circular shape */
-    color: #fff; /* Ensure the icon is white */
-    z-index: 10000; /* Should be above all other content */
-}
-
-.trash-icon i {
-    font-size: 20px; /* Adjust the size as needed */
-    color: inherit; /* The color should be white, inherited from .trash-icon */
-}
-
 .album-entry:hover .trash-icon {
     display: block; /* Show on hover */
+}
+
+.trash-icon {
+    border: 1px solid black;
 }

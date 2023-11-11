@@ -8,17 +8,17 @@ export const DELETE_ALBUM_START = "DELETE_ALBUM_START";
 export const DELETE_ALBUM_SUCCESS = "DELETE_ALBUM_SUCCESS";
 export const DELETE_ALBUM_FAILURE = "DELETE_ALBUM_FAILURE";
 
-export const FETCH_ALBUMS_START = "FETCH_ALBUMS_START";
-export const FETCH_ALBUMS_SUCCESS = "FETCH_ALBUMS_SUCCESS";
-export const FETCH_ALBUMS_FAILURE = "FETCH_ALBUMS_FAILURE";
+export const FETCH_ALBUMS_START = "albums/FETCH_ALBUMS_START";
+export const FETCH_ALBUMS_SUCCESS = "albums/FETCH_ALBUMS_SUCCESS";
+export const FETCH_ALBUMS_FAILURE = "albums/FETCH_ALBUMS_FAILURE";
 
-export const FETCH_SINGLE_ALBUM_START = "FETCH_SINGLE_ALBUM_START";
-export const FETCH_SINGLE_ALBUM_SUCCESS = "FETCH_SINGLE_ALBUM_SUCCESS";
-export const FETCH_SINGLE_ALBUM_FAILURE = "FETCH_SINGLE_ALBUM_FAILURE";
+export const FETCH_SINGLE_ALBUM_START = "albums/FETCH_SINGLE_ALBUM_START";
+export const FETCH_SINGLE_ALBUM_SUCCESS = "albums/FETCH_SINGLE_ALBUM_SUCCESS";
+export const FETCH_SINGLE_ALBUM_FAILURE = "albums/FETCH_SINGLE_ALBUM_FAILURE";
 
-export const UPDATE_ALBUM_START = "UPDATE_ALBUM_START";
-export const UPDATE_ALBUM_SUCCESS = "UPDATE_ALBUM_SUCCESS";
-export const UPDATE_ALBUM_FAILURE = "UPDATE_ALBUM_FAILURE";
+export const UPDATE_ALBUM_START = "albums/UPDATE_ALBUM_START";
+export const UPDATE_ALBUM_SUCCESS = "albums/UPDATE_ALBUM_SUCCESS";
+export const UPDATE_ALBUM_FAILURE = "albums/UPDATE_ALBUM_FAILURE";
 
 export const fetchSingleAlbum = (albumId) => async (dispatch) => {
     dispatch({ type: FETCH_SINGLE_ALBUM_START });
@@ -197,12 +197,11 @@ export const albumReducer = (state = initialState, action) => {
                 currentAlbum: null, // Reset current album while loading
             };
         case FETCH_SINGLE_ALBUM_SUCCESS:
-            const updatedState = {
+            return {
                 ...state,
                 isFetching: false,
-                currentAlbum: action.payload, // Set current album to the one fetched
+                currentAlbum: action.payload,
             };
-            return updatedState;
         case FETCH_SINGLE_ALBUM_FAILURE:
             return {
                 ...state,
@@ -221,14 +220,25 @@ export const albumReducer = (state = initialState, action) => {
         case UPDATE_ALBUM_START:
             return { ...state, isUpdating: true, error: null };
         case UPDATE_ALBUM_SUCCESS:
-            return {
+            // Log current state and action payload before the update
+            console.log("Current State before update:", state);
+            console.log("Update Payload:", action.payload);
+
+            // Update the state
+            const updatedStatee = {
                 ...state,
-                // Update the album in the albums array
                 albums: state.albums.map((album) =>
                     album.id === action.payload.id ? action.payload : album
                 ),
+                currentAlbum: action.payload, // Ensure this line is correctly updating the currentAlbum
                 isUpdating: false,
             };
+
+            // Log new state after the update
+            console.log("New State after update:", updatedStatee);
+
+            return updatedStatee;
+
         case UPDATE_ALBUM_FAILURE:
             return { ...state, isUpdating: false, error: action.payload };
 

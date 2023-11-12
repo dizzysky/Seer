@@ -114,8 +114,6 @@ export const updatePhotoTags = (photoId, tags) => async (dispatch) => {
 const photosReducer = (state = {}, action) => {
     switch (action.type) {
         case UPDATE_PHOTO_TAGS:
-            console.log("ACTION ", action.payload);
-
             const updatedPhotoId = action.payload.id;
             return {
                 ...state,

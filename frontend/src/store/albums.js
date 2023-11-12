@@ -181,7 +181,8 @@ export const albumReducer = (state = initialState, action) => {
         case CREATE_ALBUM_START:
             return { ...state, isCreating: true, error: null };
         case CREATE_ALBUM_SUCCESS:
-            console.log("Created Album:", action.payload);
+            console.log(" !!Current state:", state);
+            console.log(" !!New album data:", action.payload);
             return {
                 ...state,
                 albums: [...state.albums, action.payload],
@@ -214,7 +215,7 @@ export const albumReducer = (state = initialState, action) => {
         case FETCH_ALBUMS_START:
             return { ...state, isFetching: true, error: null };
         case FETCH_ALBUMS_SUCCESS:
-            console.log("Fetched Albums: ", action.payload);
+            // console.log("Fetched Albums: ", action.payload);
             return { ...state, albums: action.payload, isFetching: false };
         case FETCH_ALBUMS_FAILURE:
             return { ...state, isFetching: false, error: action.payload };
@@ -222,7 +223,7 @@ export const albumReducer = (state = initialState, action) => {
         case UPDATE_ALBUM_START:
             return { ...state, isUpdating: true, error: null };
         case UPDATE_ALBUM_SUCCESS:
-            console.log("Updated Album: ", action.payload);
+            // console.log("Updated Album: ", action.payload);
             const updatedStatee = {
                 ...state,
                 albums: state.albums.map((album) =>

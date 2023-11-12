@@ -148,7 +148,7 @@ const PhotoShow = () => {
     };
 
     const uploadTime = photo.createdAt
-        ? new Date(photo.createdAt).toLocaleString()
+        ? new Date(photo.createdAt).toLocaleDateString()
         : "Unknown";
 
     const toggleMenu = () => {

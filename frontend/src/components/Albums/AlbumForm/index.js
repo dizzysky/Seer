@@ -19,7 +19,6 @@ const AlbumForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const editing = !!albumId; // Check if we are editing an existing album
-    // const album = useSelector((state) => state.albums[albumId]);
     const album = useSelector((state) => state.albums.currentAlbum);
     useEffect(() => {
         if (editing) {

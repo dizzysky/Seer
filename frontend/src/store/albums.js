@@ -220,10 +220,6 @@ export const albumReducer = (state = initialState, action) => {
         case UPDATE_ALBUM_START:
             return { ...state, isUpdating: true, error: null };
         case UPDATE_ALBUM_SUCCESS:
-            // Log current state and action payload before the update
-            console.log("Current State before update:", state);
-            console.log("Update Payload:", action.payload);
-
             // Update the state
             const updatedStatee = {
                 ...state,
@@ -233,9 +229,6 @@ export const albumReducer = (state = initialState, action) => {
                 currentAlbum: action.payload, // Ensure this line is correctly updating the currentAlbum
                 isUpdating: false,
             };
-
-            // Log new state after the update
-            console.log("New State after update:", updatedStatee);
 
             return updatedStatee;
 

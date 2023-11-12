@@ -14,14 +14,11 @@ const AlbumShow = () => {
         album?.photoIds?.map((id) => state.photos[id])
     ); // This will create an array of photo objects based on photoIds
     const isFetching = useSelector((state) => state.albums.isFetching);
-    console.log("AlbumShow album: ", album);
-    console.log("AlbumShow photos: ", photos);
 
     useEffect(() => {
         if (!album || album.id !== parseInt(albumId, 10)) {
             dispatch(fetchSingleAlbum(albumId));
         }
-        console.log("USE EFFECT ALBUM ", album);
     }, [dispatch, albumId, album]);
 
     // Fetch each photo's data based on photoIds
@@ -30,8 +27,6 @@ const AlbumShow = () => {
             album.photoIds.forEach((id) => {
                 dispatch(fetchPhoto(id));
             });
-
-            console.log("USE EFFECT PHOTOS: ", photos);
         }
     }, [dispatch, album]);
 

@@ -13,7 +13,6 @@
     width: 240px;
     overflow: hidden;
     position: relative;
-    border: 10px dotted red;
 }
 
 .album-thumbnail img {

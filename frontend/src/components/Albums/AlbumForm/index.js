@@ -68,7 +68,7 @@ const AlbumForm = () => {
                 updateAlbum(albumId, title, description, selectedPhotoIds)
             );
         } else {
-            dispatch(createAlbum(title, description, selectedPhotoIds));
+            await dispatch(createAlbum(title, description, selectedPhotoIds));
         }
         history.push("/albums");
     };

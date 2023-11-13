@@ -80,7 +80,7 @@ export const updateAlbum =
     };
 export const createAlbum =
     (title, description, photoIds) => async (dispatch) => {
-        dispatch({ type: CREATE_ALBUM_START });
+        // dispatch({ type: CREATE_ALBUM_START });
 
         try {
             const formData = new FormData();
@@ -89,7 +89,6 @@ export const createAlbum =
             photoIds.forEach((id) => {
                 formData.append("album[photo_ids][]", id);
             });
-
             const response = await csrfFetch("/api/albums", {
                 method: "POST",
                 body: formData,
@@ -178,10 +177,10 @@ const initialState = {
 
 export const albumReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CREATE_ALBUM_START:
-            return { ...state, isCreating: true, error: null };
+        // case CREATE_ALBUM_START:
+        //     console.log(" CREATE_ALBUM_START action.payload: ", action.payload);
+        //     return { ...state, isCreating: true, error: null };
         case CREATE_ALBUM_SUCCESS:
-            console.log(" !!Current state:", state);
             console.log(" !!New album data:", action.payload);
             return {
                 ...state,

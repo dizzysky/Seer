@@ -32,7 +32,7 @@ export const deletePhoto = (photoId) => ({
 
 export const createPhoto = (formData) => async (dispatch) => {
     try {
-        const res = await csrfFetch("http://localhost:3000/api/photos", {
+        const res = await csrfFetch(process.env.REACT_APP_API_URL, {
             method: "POST",
             body: formData,
         });

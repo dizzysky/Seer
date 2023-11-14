@@ -230,11 +230,12 @@ const PhotoShow = () => {
 
                 {sessionUser && sessionUser.id === photo.uploaderId && (
                     <>
-                        <FontAwesomeIcon
-                            icon={faEllipsisV}
+                        {/*LOOK HERE DUMMY*/}
+                        <i
+                            className="fa-solid fa-ellipsis tag-ellipsis"
                             onClick={toggleMenu}
                             style={{ cursor: "pointer" }}
-                        />
+                        ></i>
 
                         {showMenu && (
                             <div className="dropdown-menu" ref={dropdownRef}>

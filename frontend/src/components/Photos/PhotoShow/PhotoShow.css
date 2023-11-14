@@ -22,6 +22,7 @@
     padding-top: 10px;
     padding-bottom: 15px;
     border-bottom: 1px solid #ccc;
+    position: relative;
 }
 
 .comments-section {
@@ -72,7 +73,6 @@
 }
 
 .dropdown-menu {
-    position: absolute;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -108,4 +108,11 @@
     margin-left: 5px;
     cursor: pointer;
     color: red;
+}
+
+.tag-ellipsis,
+.dropdown-menu {
+    position: absolute;
+    top: 20px;
+    right: 10px;
 }

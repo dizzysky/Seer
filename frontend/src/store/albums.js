@@ -181,7 +181,6 @@ export const albumReducer = (state = initialState, action) => {
         //     console.log(" CREATE_ALBUM_START action.payload: ", action.payload);
         //     return { ...state, isCreating: true, error: null };
         case CREATE_ALBUM_SUCCESS:
-            console.log(" !!New album data:", action.payload);
             return {
                 ...state,
                 albums: [...state.albums, action.payload],

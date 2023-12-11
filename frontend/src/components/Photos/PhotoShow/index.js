@@ -40,6 +40,21 @@ const PhotoShow = () => {
     const dropdownRef = useRef(null);
     const captionRef = useRef(null);
 
+    //event listener for left/right key clicks to engage carousel
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "ArrowLeft") {
+            } else if (event.key === "ArrowRight") {
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
+
     useEffect(() => {
         function handleClickOutside(event) {
             if (

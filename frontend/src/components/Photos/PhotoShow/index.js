@@ -44,7 +44,9 @@ const PhotoShow = () => {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "ArrowLeft") {
+                navigateToPhoto(prevPhotoId);
             } else if (event.key === "ArrowRight") {
+                navigateToPhoto(nextPhotoId);
             }
         };
 
@@ -53,7 +55,7 @@ const PhotoShow = () => {
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
-    }, []);
+    }, [prevPhotoId, nextPhotoId]);
 
     useEffect(() => {
         function handleClickOutside(event) {

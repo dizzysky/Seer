@@ -13,7 +13,6 @@ const CommentForm = ({ photoId }) => {
         // Dispatch the postComment action with the comment data
         dispatch(postComment(photoId, { body: commentText }));
 
-        // Clear the input field
         setCommentText("");
     };
 

@@ -1,28 +1,21 @@
 .image-container {
-  height: 200px;  /* or whatever height you wish */
-  width: 100%;
-  overflow: hidden;
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
 }
 
-  
-  /* .image-container img {
-    max-height: 200px;
-    width: auto;
-  }
-   */
-   .image-wrapper {
+.image-wrapper {
     position: relative;
-  }
-  
-  .photo-item {
+}
+
+.photo-item {
     max-height: 100%;
     object-fit: cover;
     width: 100%;
     height: 100%;
-  }
-  
-  
-  .caption-overlay {
+}
+
+.caption-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -31,44 +24,40 @@
     overflow: hidden;
     width: 100%;
     height: 0;
-    transition: .3s;
+    transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .caption-overlay {
+}
+
+.caption-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); 
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
     overflow: hidden;
     width: 100%;
     height: 0;
-    transition: height .3s ease, opacity .3s ease;
+    transition: height 0.3s ease, opacity 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    color:white;
-  }
-  
-  
-  .image-wrapper:hover .photo-item {
+    color: white;
+}
+
+.image-wrapper:hover .photo-item {
     opacity: 0.7;
-  }
-  
-  .image-wrapper:hover .caption-overlay {
+}
+
+.image-wrapper:hover .caption-overlay {
     height: 50%;
     opacity: 1;
-  }
-  
-  .caption-text {
+}
+
+.caption-text {
     color: white; /* Explicitly set the text color to white */
     font-size: 16px;
     text-align: center;
-  }
-  
-  
-  
+}

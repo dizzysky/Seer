@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    position: relative; /* Add position: relative */
+    position: relative;
 }
 
 .grey-area img {
@@ -37,7 +37,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    position: absolute; /* Change position to absolute */
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }

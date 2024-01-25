@@ -9,7 +9,6 @@
 
 .photo-selection-prompt .photo {
     transition: filter 0.3s;
-    /* Assuming you have some sort of default settings for your photos */
 }
 
 .photo-selection-prompt .photo:not(.selected) {
@@ -31,7 +30,7 @@
 }
 
 .create-album-btn {
-    background-color: #333; /* A nice blue color, or choose your own */
+    background-color: #333;
     color: white;
     padding: 10px 20px;
     border: none;

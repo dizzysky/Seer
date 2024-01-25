@@ -3,7 +3,6 @@
     flex-wrap: wrap;
     justify-content: left;
     gap: 100px;
-    /* border: 1px dotted black; */
     max-width: 80vw;
     margin: 40px auto;
 }

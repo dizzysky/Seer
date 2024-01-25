@@ -12,7 +12,7 @@ body {
     margin: 0;
 }
 
-/* Your App's main container should stretch and push the footer down */
+/*main container should stretch and push the footer down */
 .main-container {
     height: 100vh;
     /* min-height: 100vh; */
@@ -20,7 +20,7 @@ body {
     flex-direction: column;
 }
 
-/* Your content should grow to take available space */
+/*content should grow to take available space */
 .content {
     /* flex-grow: 1; */
     padding-bottom: 70px;
@@ -35,12 +35,8 @@ body {
 }
 
 .normal-page {
-    padding-top: 64px; /* This should match the height of your navbar */
+    padding-top: 64px; /*should match the height of your navbar */
 }
-
-/* h1:not(.splash-container h1) {
-    margin-left: 5.5em;
-} */
 
 a {
     text-decoration: none;

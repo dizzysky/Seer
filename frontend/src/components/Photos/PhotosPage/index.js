@@ -29,7 +29,7 @@ const PhotosPage = () => {
                     ) : (
                         <div className="loading-container">
                             <p>Waiting for seeded photos to appear...</p>
-                            {/* Your loading image here */}
+                            {/*loading image here */}
                         </div>
                     )}
                 </div>

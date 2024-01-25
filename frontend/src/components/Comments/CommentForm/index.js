@@ -10,7 +10,7 @@ const CommentForm = ({ photoId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Dispatch the postComment action with the comment data
+        //Dispatch the postComment action with the comment data
         dispatch(postComment(photoId, { body: commentText }));
 
         setCommentText("");

@@ -16,6 +16,7 @@ const PhotosPage = () => {
         dispatch(fetchPhotos());
     }, [dispatch]);
 
+    
     return (
         <div className="photos-page-container">
             <div className="grid-container">

@@ -12,7 +12,6 @@ li {
     box-sizing: border-box;
 }
 
-/* Remove list styles */
 ul {
     list-style: none;
 }

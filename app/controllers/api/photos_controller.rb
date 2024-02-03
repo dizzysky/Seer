@@ -119,4 +119,11 @@ end
       end
     end
 
+
+    def search
+      query = params[:query]
+      @photos = Photo.search(query)
+      render json: @photos # Adjust according to your needs
+    end
+
 end

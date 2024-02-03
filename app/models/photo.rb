@@ -7,9 +7,13 @@ class Photo < ApplicationRecord
 
 
 
-  #scope for search
 
-  scope :search, -> (query) {
+  def self.search(query)
+    return all unless query.present?
     
-  }
+    joins(:tags).where(
+      "photos.caption ILIKE :query OR tags.name ILIKE :query",
+      query: "%#{query}%"
+    ).distinct
+  end
 end

@@ -4,4 +4,12 @@ class Photo < ApplicationRecord
   has_many :comments
   has_and_belongs_to_many :albums
   has_and_belongs_to_many :tags
+
+
+
+  #scope for search
+
+  scope :search, -> (query) {
+    
+  }
 end

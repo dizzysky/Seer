@@ -16,4 +16,6 @@ class Photo < ApplicationRecord
       query: "%#{query}%"
     ).distinct
   end
+
+  
 end

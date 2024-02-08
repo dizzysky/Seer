@@ -74,10 +74,9 @@ const PhotoShow = () => {
                 setIsEditing(false); // And a state setter for this as well
             }
         }
-        // Add the event listener
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            // Remove the event listener
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [showMenu, isEditing]);

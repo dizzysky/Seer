@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     resource :session, only: [:show, :create, :destroy]
     
+    get 'photos/serach', to: 'photos#search'
+
     resources :photos, only: [:show, :index, :create, :edit, :update, :destroy] do
       resources :comments, only: [:create, :index, :destroy, :update]
       delete 'tags/:tag_id', to: 'photos#remove_tag' 

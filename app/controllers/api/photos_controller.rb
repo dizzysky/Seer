@@ -92,6 +92,12 @@ class Api::PhotosController < ApplicationController
         render json: { errors: 'Tag could not be added' }, status: :unprocessable_entity
       end
     end
+
+    def search
+      query = params[:query]
+      @photos = Photo.search(query)
+      render json: @photos # Adjust according to your needs
+    end
   
 
     private
@@ -120,10 +126,6 @@ class Api::PhotosController < ApplicationController
     end
 
 
-    def search
-      query = params[:query]
-      @photos = Photo.search(query)
-      render json: @photos # Adjust according to your needs
-    end
+   
 
 end
